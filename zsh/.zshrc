@@ -125,5 +125,7 @@ fpath=("$HOME/.zsh/functions" $fpath)
 autoload -U promptinit; promptinit
 prompt pure
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Must be last so it can wrap all custom zle widgets
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

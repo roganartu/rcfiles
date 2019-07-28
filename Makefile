@@ -22,7 +22,11 @@ zsh: .PHONY submodules
 	# Fishy autosuggestions
 	ln -s `pwd`/zsh/plugins/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
-install: submodules vim zsh
+fzf: .PHONY submodules
+	ln -s `pwd`/fzf/.fzf ~/.fzf
+	ln -s `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
+
+install: submodules vim zsh fzf
 
 update: submodules
 
