@@ -33,7 +33,7 @@ plugins=(
     pip
     pyenv
     sudo
-    systemctl
+    systemd
     web-search
     wd
 )
