@@ -132,6 +132,10 @@ set undodir=~/.cache/vim/undo
 noremap <leader>u :MundoToggle<CR>
 " }}}
 
+" fzf {{{
+set rtp+=~/.fzf
+" }}}
+
 " autocorrect {{{
 augroup litecorrect
   autocmd!

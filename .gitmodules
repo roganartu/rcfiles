@@ -64,3 +64,6 @@
 [submodule "fzf/.fzf"]
 	path = fzf/.fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "vim/.vim/bundle/fzf.vim"]
+	path = vim/.vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
