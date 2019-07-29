@@ -39,11 +39,11 @@ clean: .PHONY
 			~/.zshrc(@) \
 			~/.zshenv(@) \
 			~/.oh-my-zsh(@) \
-			~/.zsh/functions/prompt_pure_setu(@)p \
+			~/.zsh/functions/prompt_pure_setup(@) \
 			~/.zsh/functions/async(@) \
 			~/.zsh/zsh-syntax-highlighting(@) \
 			~/.zsh/zsh-autosuggestions(@) \
 			~/.fzf(@) \
-			~/.fzf.sh(@)'
+			~/.fzf.zsh(@)'
 
 .PHONY:
