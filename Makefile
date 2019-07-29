@@ -7,6 +7,7 @@ vim: .PHONY submodules
 
 zsh: .PHONY submodules
 	ln -s `pwd`/zsh/.zshrc ~/.zshrc
+	ln -s `pwd`/zsh/.zshenv ~/.zshenv
 	ln -s `pwd`/zsh/.oh-my-zsh ~/.oh-my-zsh
 	
 	mkdir -p ~/.zsh
