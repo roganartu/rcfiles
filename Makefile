@@ -28,6 +28,20 @@ fzf: .PHONY submodules
 
 install: submodules vim zsh fzf
 
-update: submodules
+update: clean install
+
+clean: .PHONY
+	zsh -c 'rm \
+		~/.vim(@) \
+		~/.vimrc(@) \
+		~/.zshrc(@) \
+		~/.zshenv(@) \
+		~/.oh-my-zsh(@) \
+		~/.zsh/functions/prompt_pure_setu(@)p \
+		~/.zsh/functions/async(@) \
+		~/.zsh/zsh-syntax-highlighting(@) \
+		~/.zsh/zsh-autosuggestions(@) \
+		~/.fzf(@) \
+		~/.fzf.sh(@)'
 
 .PHONY:
