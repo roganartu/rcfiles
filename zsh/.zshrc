@@ -133,5 +133,13 @@ prompt pure
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Include a local zsh overrides file if it's present.
+# This isn't checked in, and is useful for my current employer
+# who doesn't like things related to their environment
+# being released without permission.
+if [ -f ~/.zshrc-overrides ]; then
+    . ~/.zshrc-overrides
+fi
+
 # Must be last so it can wrap all custom zle widgets
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
