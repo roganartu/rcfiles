@@ -102,6 +102,12 @@ fi
 if [[ "${terminfo[kend]}" != "" ]]; then
   bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
 fi
+if [[ "${terminfo[kdch1]}" != "" ]]; then
+  bindkey "${terminfo[kdch1]}"  delete-char           # [Del] - Delete char
+fi
+
+# Fuck ansible cowsay off
+export ANSIBLE_NOCOWS=1
 
 export GOPATH=~/Code/go
 export GOROOT=/usr/local/go
