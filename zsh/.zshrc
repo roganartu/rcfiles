@@ -86,6 +86,9 @@ eval "$(pyenv virtualenv-init -)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>&1 >/dev/null
 
+# Force tmux to use 256 colours
+alias tmux="TERM=xterm-256color tmux -2"
+
 # Some overrides
 # start typing + [Up-Arrow] - fuzzy find history forward
 autoload -U up-line-or-beginning-search

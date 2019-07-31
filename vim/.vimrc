@@ -4,6 +4,7 @@
 execute pathogen#infect()
 " Colors {{{
 syntax enable           " enable syntax processing
+set t_Co=256
 colorscheme badwolf
 set termguicolors
 " }}}
@@ -146,6 +147,17 @@ augroup END
 
 " markdown {{{
 let g:vim_markdown_toml_frontmatter = 1
+" }}}
+
+" tmux {{{
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 " }}}
 
 " Custom Functions {{{
