@@ -5,6 +5,11 @@ vim: .PHONY submodules
 	ln -s `pwd`/vim/.vim ~/.vim
 	ln -s `pwd`/vim/.vimrc ~/.vimrc
 
+tmux: .PHONY submodules
+	ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
+	mkdir -p ~/.tmux
+	ln -s `pwd`/tmux/plugins ~/.tmux/plugins
+
 zsh: .PHONY submodules
 	ln -s `pwd`/zsh/.zshrc ~/.zshrc
 	ln -s `pwd`/zsh/.zshenv ~/.zshenv
@@ -27,7 +32,7 @@ fzf: .PHONY submodules
 	ln -s `pwd`/fzf/.fzf ~/.fzf
 	ln -s `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
 
-install: submodules vim zsh fzf
+install: submodules vim zsh fzf tmux
 
 update: clean install
 
@@ -44,6 +49,8 @@ clean: .PHONY
 			~/.zsh/zsh-syntax-highlighting(@) \
 			~/.zsh/zsh-autosuggestions(@) \
 			~/.fzf(@) \
-			~/.fzf.zsh(@)'
+			~/.fzf.zsh(@) \
+			~/.tmux.conf(@) \
+			~/.tmux/plugins(@)'
 
 .PHONY:
