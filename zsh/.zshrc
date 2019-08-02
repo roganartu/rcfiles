@@ -36,6 +36,7 @@ plugins=(
     systemd
     web-search
     wd
+    vi-mode
 )
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct
@@ -102,13 +103,16 @@ zle -N down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
 if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line      # [Home] - Go to beginning of line
+  bindkey -M viins "${terminfo[khome]}" beginning-of-line   # [Home] - Go to beginning of line
+  bindkey -M vicmd "${terminfo[khome]}" beginning-of-line   # Need to specify vi-mode
 fi
 if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}"  end-of-line            # [End] - Go to end of line
+  bindkey -M viins "${terminfo[kend]}"  end-of-line         # [End] - Go to end of line
+  bindkey -M vicmd "${terminfo[kend]}"  end-of-line         # Need to specify vi-mode
 fi
 if [[ "${terminfo[kdch1]}" != "" ]]; then
-  bindkey "${terminfo[kdch1]}"  delete-char           # [Del] - Delete char
+  bindkey -M viins "${terminfo[kdch1]}"  delete-char        # [Del] - Delete char
+  bindkey -M vicmd "${terminfo[kdch1]}"  delete-char        # Need to specify vi-mode
 fi
 
 # Fuck ansible cowsay off
