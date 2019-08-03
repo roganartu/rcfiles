@@ -101,6 +101,15 @@ let g:syntastic_ignore_files = ['.java$']
 let g:syntastic_python_python_exec = 'python3'
 " }}}
 
+" NerdCommenter {{{
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDSpaceDelims = 1
+let g:NERDToggleCheckAllLines = 1
+nmap <C-_>   <Plug>NERDCommenterToggle
+vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
+" }}}
+
 " git-gutter {{{
 if exists('&signcolumn')  " Vim 7.4.2201
   set signcolumn=yes
