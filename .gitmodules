@@ -88,3 +88,6 @@
 [submodule "tmux/plugins/tmux-continuum"]
 	path = tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum
+[submodule "vim/.vim/bundle/vim-devicons"]
+	path = vim/.vim/bundle/vim-devicons
+	url = https://github.com/ryanoasis/vim-devicons.git
