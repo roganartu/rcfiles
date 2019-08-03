@@ -117,7 +117,8 @@ fi
 
 # Use bat if it's available, else fallback to cat
 _bat_if_present() {
-    if [ -z "$(which bat)" ]; then
+    which bat 2>&1 > /dev/null
+    if [ $? -ne 0 ]; then
         # Bat isn't available, use cat
         /bin/cat "$@"
     else
