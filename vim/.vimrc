@@ -173,6 +173,10 @@ augroup litecorrect
 augroup END
 " }}}
 
+" autoformatting {{{
+autocmd FileType python autocmd BufWritePre <buffer> call Black()
+" }}}
+
 " markdown {{{
 let g:vim_markdown_toml_frontmatter = 1
 " }}}
