@@ -99,8 +99,8 @@ vnoremap <leader>y "+y
 " }}}
 
 " IDE stuff {{{
-" Press F9 to run current file
-nnoremap <F9> :!%:p<Enter>
+" Press F9 to run current file in a fresh terminal
+nnoremap <F9> :!clear && %:p<Enter>
 " }}}
 
 " CtrlP {{{
