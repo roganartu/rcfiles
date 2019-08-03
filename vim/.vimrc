@@ -3,6 +3,10 @@
 "     https://github.com/dougblack/dotfiles/blob/master/.vimrc
 execute pathogen#infect()
 
+" Encoding {{{
+set encoding=utf-8
+" }}}
+
 " Colors {{{
 syntax enable           " enable syntax processing
 set t_Co=256
