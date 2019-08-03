@@ -101,6 +101,7 @@ bindkey "^[[A" up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
+bindkey '^[[Z' reverse-menu-complete
 
 if [[ "${terminfo[khome]}" != "" ]]; then
   bindkey -M viins "${terminfo[khome]}" beginning-of-line   # [Home] - Go to beginning of line
@@ -147,12 +148,6 @@ fi
 
 ssh-add -A  &> /dev/null
 
-# Use pure prompt
-# Must be after the oh-my-zsh sourcing
-fpath=("$HOME/.zsh/functions" $fpath)
-autoload -U promptinit; promptinit
-prompt pure
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Include a local zsh overrides file if it's present.
@@ -162,6 +157,12 @@ prompt pure
 if [ -f ~/.zshrc-overrides ]; then
     . ~/.zshrc-overrides
 fi
+
+# Use pure prompt
+# Must be after the oh-my-zsh sourcing
+fpath=("$HOME/.zsh/functions" $fpath)
+autoload -U promptinit; promptinit
+prompt pure
 
 # Must be last so it can wrap all custom zle widgets
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
