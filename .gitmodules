@@ -10,9 +10,6 @@
 [submodule "vim/.vim/bundle/vim-test"]
 	path = vim/.vim/bundle/vim-test
 	url = https://github.com/janko/vim-test.git
-[submodule "vim/.vim/bundle/ctrlp.vim"]
-	path = vim/.vim/bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/.vim/bundle/typescript-vim"]
 	path = vim/.vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
