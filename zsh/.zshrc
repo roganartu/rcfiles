@@ -57,6 +57,7 @@ zstyle :compinstall filename $HOME'/.zshrc'
 # change the path color
 zstyle :prompt:pure:path color white
 PURE_PROMPT_SYMBOL="➜"
+PURE_PROMPT_VICMD_SYMBOL="●"
 PURE_GIT_DOWN_ARROW="(behind)"
 PURE_GIT_UP_ARROW="(ahead)"
 
