@@ -23,7 +23,7 @@ let g:webdevicons_enable = 1
 
 " Files + devicons
 function! Fzf_dev(qargs)
-  let l:fzf_files_options = '--preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
+  let l:fzf_files_options = '--reverse --prompt "filename > " --header "Open File:" --preview "bat --theme="OneHalfDark" --style=numbers,changes --color always {2..-1} | head -'.&lines.'" --expect=ctrl-t,ctrl-v,ctrl-x --multi --bind=ctrl-a:select-all,ctrl-d:deselect-all'
 
   function! s:files(dir)
     let l:cmd = $FZF_DEFAULT_COMMAND
@@ -60,10 +60,10 @@ function! Fzf_dev(qargs)
   endfunction
 
   call fzf#run({
-        \ 'source': <sid>files(a:qargs),
+        \ 'source':  <sid>files(a:qargs),
         \ 'sink*':   function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
-        \ 'down':    '40%' })
+        \ 'up':      '20%' })
 endfunction
 
 " Ctrl-P to open the file prompt, copying vscode
