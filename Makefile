@@ -39,6 +39,11 @@ install: submodules vim zsh fzf tmux bin
 
 update: clean install
 
+update_binaries: update_bats
+
+update_bat: .PHONY
+	./bat/update.sh
+
 clean: .PHONY
 	zsh -c 'setopt null_glob; \
 		rm -f \
