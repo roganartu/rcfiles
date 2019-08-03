@@ -32,13 +32,17 @@ fzf: .PHONY submodules
 	ln -s `pwd`/fzf/.fzf ~/.fzf
 	ln -s `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
 
-install: submodules vim zsh fzf tmux
+bin: .PHONY
+	ln -s `pwd`/bin ~/bin
+
+install: submodules vim zsh fzf tmux bin
 
 update: clean install
 
 clean: .PHONY
 	zsh -c 'setopt null_glob; \
 		rm -f \
+			~/bin(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
 			~/.zshrc(@) \
