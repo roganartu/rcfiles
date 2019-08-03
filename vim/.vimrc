@@ -39,6 +39,17 @@ set lazyredraw
 set showmatch           " higlight matching parenthesis
 set fillchars+=vert:┃
 set relativenumber      " Default to relative line numbers
+
+" Show whitespace chars
+set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
+set list
+
+" Wrap more readably, on spaces instead of mid-word
+set wrap linebreak
+
+" Add a light-grey column at 88 (for Python) and 120 (for anything else)
+set colorcolumn=88,120
+highlight ColorColumn ctermbg=0 guibg=deeppink4
 " }}}
 
 " Searching {{{
@@ -85,6 +96,11 @@ nnoremap <leader>t :TestFile<CR>
 nnoremap <leader>r :call <SID>RunFile()<CR>
 nnoremap <leader>b :call <SID>BuildFile()<CR>
 vnoremap <leader>y "+y
+" }}}
+
+" IDE stuff {{{
+" Press F9 to run current file
+nnoremap <F9> :!%:p<Enter>
 " }}}
 
 " CtrlP {{{
