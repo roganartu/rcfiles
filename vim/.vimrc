@@ -2,16 +2,19 @@
 " Borrows heavily from Douglas Black's .vimrc:
 "     https://github.com/dougblack/dotfiles/blob/master/.vimrc
 execute pathogen#infect()
+
 " Colors {{{
 syntax enable           " enable syntax processing
 set t_Co=256
 colorscheme badwolf
 set termguicolors
 " }}}
+
 " Misc {{{
 set backspace=indent,eol,start
 set clipboard=unnamed
 " }}}
+
 " Spaces & Tabs {{{
 set tabstop=4           " 4 space tab
 set expandtab           " use spaces for tabs
@@ -22,6 +25,7 @@ filetype indent on
 filetype plugin on
 set autoindent
 " }}}
+
 " UI Layout {{{
 set number              " show line numbers
 set showcmd             " show command in bottom bar
@@ -32,11 +36,13 @@ set showmatch           " higlight matching parenthesis
 set fillchars+=vert:┃
 set relativenumber      " Default to relative line numbers
 " }}}
+
 " Searching {{{
 set ignorecase          " ignore case when searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all matches
 " }}}
+
 " Folding {{{
 "=== folding ===
 set foldmethod=indent   " fold based on indent level
@@ -44,11 +50,19 @@ set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
 set foldlevelstart=10   " start with fold level of 1
 " }}}
+
 " Line Shortcuts {{{
-nnoremap j gj
-nnoremap k gk
+" This approach has the benefit of not breaking
+" bulk line movement using the relative line numbers
+" from the gutter.
+" Source: https://stackoverflow.com/a/21000307/943833
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+nnoremap <Up> gk
+nnoremap <Down> gj
 nnoremap gV `[v`]
 " }}}
+
 " Leader Shortcuts {{{
 let mapleader=","
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
