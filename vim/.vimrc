@@ -122,6 +122,8 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 let g:NERDToggleCheckAllLines = 1
+" For whatever reason, <C-_> is actually Ctrl+/.
+" Nice, intuitive comment toggle keymap.
 nmap <C-_>   <Plug>NERDCommenterToggle
 vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 " }}}
