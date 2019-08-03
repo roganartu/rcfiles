@@ -76,29 +76,13 @@ def _initialize_black_env(upgrade=False):
   import venv
   virtualenv_path = Path(vim.eval("g:black_virtualenv")).expanduser()
   virtualenv_site_packages = str(_get_virtualenv_site_packages(virtualenv_path, pyver))
-  first_install = False
   if not virtualenv_path.is_dir():
-    print('Please wait, one time setup for Black.')
-    _executable = sys.executable
-    try:
-      sys.executable = str(_get_python_binary(Path(sys.exec_prefix)))
-      print(f'Creating a virtualenv in {virtualenv_path}...')
-      print('(this path can be customized in .vimrc by setting g:black_virtualenv)')
-      venv.create(virtualenv_path, with_pip=True)
-    finally:
-      sys.executable = _executable
-    first_install = True
-  if first_install:
-    print('Installing Black with pip...')
+    print(f'No virtualenv at {virtualenv_path}')
+    return False
   if upgrade:
     print('Upgrading Black with pip...')
-  if first_install or upgrade:
     subprocess.run([str(_get_pip(virtualenv_path)), 'install', '-U', 'black'], stdout=subprocess.PIPE)
     print('DONE! You are all set, thanks for waiting ✨ �� ✨')
-  if first_install:
-    print('Pro-tip: to upgrade Black in the future, use the :BlackUpgrade command and restart Vim.\n')
-  print(sys.path[0])
-  print(virtualenv_site_packages)
   if sys.path[0] != virtualenv_site_packages:
     sys.path.insert(0, virtualenv_site_packages)
   return True
@@ -110,6 +94,9 @@ def Black():
   if _initialize_black_env():
     import black
     import time
+  else:
+    print('Failed to initialized venv')
+    sys.exit(1)
 
   start = time.time()
   fast = bool(int(vim.eval("g:black_fast")))
@@ -140,7 +127,9 @@ def BlackUpgrade():
 def BlackVersion():
   if _initialize_black_env():
     import black
-  print(f'Black, version {black.__version__} on Python {sys.version}.')
+    print(f'Black, version {black.__version__} on Python {sys.version}.')
+  else:
+    print('Failed to initialized venv')
 
 endpython3
 

@@ -174,7 +174,7 @@ augroup END
 " }}}
 
 " autoformatting {{{
-autocmd FileType python autocmd BufWritePre <buffer> call Black()
+autocmd FileType python autocmd BufWritePre <buffer> :Black
 " }}}
 
 " markdown {{{
