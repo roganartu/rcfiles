@@ -2,38 +2,38 @@ submodules: .PHONY
 	git submodule update --init --recursive
 
 vim: .PHONY submodules
-	ln -s `pwd`/vim/.vim ~/.vim
-	ln -s `pwd`/vim/.vimrc ~/.vimrc
+	ln -s -n `pwd`/vim/.vim ~/.vim
+	ln -s -n `pwd`/vim/.vimrc ~/.vimrc
 
 tmux: .PHONY submodules
-	ln -s `pwd`/tmux/.tmux.conf ~/.tmux.conf
+	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
 	mkdir -p ~/.tmux
-	ln -s `pwd`/tmux/plugins ~/.tmux/plugins
+	ln -s -n `pwd`/tmux/plugins ~/.tmux/plugins
 
 zsh: .PHONY submodules
-	ln -s `pwd`/zsh/.zshrc ~/.zshrc
-	ln -s `pwd`/zsh/.zshenv ~/.zshenv
-	ln -s `pwd`/zsh/.oh-my-zsh ~/.oh-my-zsh
+	ln -s -n `pwd`/zsh/.zshrc ~/.zshrc
+	ln -s -n `pwd`/zsh/.zshenv ~/.zshenv
+	ln -s -n `pwd`/zsh/.oh-my-zsh ~/.oh-my-zsh
 	
 	mkdir -p ~/.zsh
 	
 	# Pure theme
 	mkdir -p ~/.zsh/functions
-	ln -s `pwd`/zsh/submodules/pure/pure.zsh ~/.zsh/functions/prompt_pure_setup
-	ln -s `pwd`/zsh/submodules/pure/async.zsh ~/.zsh/functions/async
+	ln -s -n `pwd`/zsh/submodules/pure/pure.zsh ~/.zsh/functions/prompt_pure_setup
+	ln -s -n `pwd`/zsh/submodules/pure/async.zsh ~/.zsh/functions/async
 	
 	# Syntax highlighting
-	ln -s `pwd`/zsh/plugins/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+	ln -s -n `pwd`/zsh/plugins/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 	
 	# Fishy autosuggestions
-	ln -s `pwd`/zsh/plugins/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+	ln -s -n `pwd`/zsh/plugins/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
 fzf: .PHONY submodules
-	ln -s `pwd`/fzf/.fzf ~/.fzf
-	ln -s `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
+	ln -s -n `pwd`/fzf/.fzf ~/.fzf
+	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
 
 bin: .PHONY
-	ln -s `pwd`/bin ~/bin
+	ln -s -n `pwd`/bin ~/bin
 
 install: submodules vim zsh fzf tmux bin
 
