@@ -115,6 +115,18 @@ if [[ "${terminfo[kdch1]}" != "" ]]; then
   bindkey -M vicmd "${terminfo[kdch1]}"  delete-char        # Need to specify vi-mode
 fi
 
+# Use bat if it's available, else fallback to cat
+_bat_if_present() {
+    if [ -z "$(which bat)" ]; then
+        # Bat isn't available, use cat
+        /bin/cat "$@"
+    else
+        # Yay bat is way nicer
+        bat "$@"
+    fi
+}
+alias cat=_bat_if_present
+
 # Fuck ansible cowsay off
 export ANSIBLE_NOCOWS=1
 
