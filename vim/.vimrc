@@ -173,6 +173,18 @@ augroup litecorrect
 augroup END
 " }}}
 
+" splits {{{
+" Use Alt+Arrows to move around, same as my tmux config
+nnoremap <A-Down> <C-W><C-J>
+nnoremap <A-Up> <C-W><C-K>
+nnoremap <A-Right> <C-W><C-L>
+nnoremap <A-Left> <C-W><C-H>
+
+" Change default split location to bottom right
+set splitbelow
+set splitright
+" }}}
+
 " autoformatting {{{
 autocmd FileType python autocmd BufWritePre <buffer> :Black
 " }}}
