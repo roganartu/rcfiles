@@ -15,9 +15,6 @@ DEFAULT_USER=$USER
 
 ZSH_THEME=""
 
-# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-export KEYTIMEOUT=1
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -81,6 +78,9 @@ SAVEHIST=100000
 setopt appendhistory autocd beep nomatch notify
 bindkey -v
 bindkey '^R' history-incremental-search-backward
+
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
