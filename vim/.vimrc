@@ -139,6 +139,15 @@ vnoremap < <gv
 vnoremap > >gv
 " }}}
 
+" Spell checking {{{
+" Toggle the spell checker
+map <leader>ss :setlocal spell!<cr>
+
+" Underline bad spellings
+hi clear SpellBad
+hi SpellBad cterm=underline,italic
+" }}}
+
 " Leader Shortcuts {{{
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>h :A<CR>
