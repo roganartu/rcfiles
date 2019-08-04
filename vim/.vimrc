@@ -14,9 +14,22 @@ colorscheme badwolf
 set termguicolors
 " }}}
 
+" Leader stuff {{{
+" Spacebar leader, awwww yeah
+" Need to remember to remap <Space> to a noop
+" to avoid the infamous space-leader-delay issue.
+let mapleader = " "
+let g:mapleader = " "
+nnoremap <SPACE> <Nop>
+
+" Fast saving
+map <Leader>w :w<CR>
+" }}}
+
 " Misc {{{
 set backspace=indent,eol,start
 set clipboard=unnamed
+set noswapfile
 " }}}
 
 " Spaces & Tabs {{{
@@ -34,7 +47,32 @@ set autoindent
 set number              " show line numbers
 set showcmd             " show command in bottom bar
 set nocursorline        " highlight current line
+
+" Wildmenu settings
 set wildmenu
+set wildignore=*.o,*~,*.pyc,git\*,.hg\*,.svn\*
+
+" Hide buffers when they are abandoned
+set hid
+
+" Wrap when moving left/right at EOL/BOL
+set whichwrap+=<,>,h,l,[,]
+
+" Use a mouse sometimes, even though it's blasphemy
+if has('mouse')
+  set mouse=a
+  inoremap <LeftMouse> <Nop>
+  inoremap <2-LeftMouse> <Nop>
+  inoremap <3-LeftMouse> <Nop>
+  inoremap <4-LeftMouse> <Nop>
+  " Without this, mouse doesn't work across splits
+  if has("mouse_sgr")
+      set ttymouse=sgr
+  else
+      set ttymouse=xterm2
+  end
+endif
+
 set lazyredraw
 set showmatch           " higlight matching parenthesis
 set fillchars+=vert:┃
@@ -43,6 +81,14 @@ set relativenumber      " Default to relative line numbers
 " Show whitespace chars
 set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
 set list
+
+" highlight trailing space
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Wrap more readably, on spaces instead of mid-word
 set wrap linebreak
@@ -53,9 +99,12 @@ highlight ColorColumn ctermbg=0 guibg=deeppink4
 " }}}
 
 " Searching {{{
-set ignorecase          " ignore case when searching
+set ignorecase
+set infercase
+set smartcase
 set incsearch           " search as characters are entered
 set hlsearch            " highlight all matches
+set magic               " regex searching
 " }}}
 
 " Folding {{{
@@ -79,16 +128,20 @@ nnoremap gV `[v`]
 " }}}
 
 " Leader Shortcuts {{{
-let mapleader=","
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>h :A<CR>
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>l :call <SID>ToggleNumber()<CR>
+
+" Clear search highlighting
 nnoremap <leader><space> :noh<CR>
 nnoremap <leader>s :mksession<CR>
-nnoremap <leader>a :Ag 
+
+" TODO make this use fzf with rg
+nnoremap <leader>f :Rg 
+
 nnoremap <leader>c :SyntasticCheck<CR>:Errors<CR>
 nnoremap <leader>1 :set number!<CR>
 nnoremap <leader>d :GoDoc 
@@ -166,6 +219,28 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+" }}}
+
+" Sessions {{{
+" Remember things between sessions
+" '20  - remember marks for 20 previous files 
+" \"50 - save 50 lines for each register 
+" :20  - remember 20 items in command-line history 
+" /20  - remember 20 items in search history 
+" %    - remember the buffer list (if vim started without a file arg) 
+" n    - set name of viminfo file
+set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+
+" Define what to save with :mksession 
+" blank    - empty windows
+" buffers  - all buffers not only ones in a window 
+" curdir   - the current directory 
+" folds    - including manually created ones 
+" help     - the help window 
+" options  - all options and mapping 
+" winsize  - window sizes 
+" tabpages - all tab pages
+set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 " }}}
 
 " airline {{{
