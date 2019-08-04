@@ -157,8 +157,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>l :call <SID>ToggleNumber()<CR>
 
 " Clear search highlighting
-nnoremap <leader><space> :noh<CR>
-nnoremap <leader>s :mksession<CR>
+nnoremap <silent> <leader><CR> :noh<CR>
 
 " TODO make this use fzf with rg
 nnoremap <leader>f :Rg 
@@ -251,6 +250,8 @@ set writebackup
 " %    - remember the buffer list (if vim started without a file arg) 
 " n    - set name of viminfo file
 set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+
+nnoremap <leader>s :mksession<CR>
 
 " Define what to save with :mksession 
 " blank    - empty windows
