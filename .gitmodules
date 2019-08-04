@@ -103,3 +103,6 @@
 [submodule "vim/.vim/bundle/nerdtree-git-plugin"]
 	path = vim/.vim/bundle/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule "vim/.vim/bundle/nerdtree"]
+	path = vim/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
