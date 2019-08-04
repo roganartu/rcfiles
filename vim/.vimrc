@@ -136,6 +136,9 @@ map 0 ^
 " Allow shifting in visual mode without exiting it
 vnoremap < <gv
 vnoremap > >gv
+
+" Always keep 20 lines below the cursor
+set scrolloff=20
 " }}}
 
 " Spell checking {{{
