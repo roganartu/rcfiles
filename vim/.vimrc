@@ -190,7 +190,10 @@ nnoremap <F10> :!clear && zsh<Enter><Enter>
 
 " Tagbar {{{
 " Use F8 to toggle Tagbar display
-nmap <F8> :TagbarToggle<CR>
+nmap <silent> <F8> :TagbarToggle<CR>
+
+" Auto-expand closed folds if the current tag is inside them
+let g:tagbar_autoshowtag = 1
 " }}}
 
 " CtrlP {{{
