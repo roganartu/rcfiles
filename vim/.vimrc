@@ -130,6 +130,13 @@ nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <Up> gk
 nnoremap <Down> gj
 nnoremap gV `[v`]
+
+" 0 should go to first non-whitespace char
+map 0 ^
+
+" Allow shifting in visual mode without exiting it
+vnoremap < <gv
+vnoremap > >gv
 " }}}
 
 " Leader Shortcuts {{{
