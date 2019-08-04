@@ -286,7 +286,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Ctrl-Space {{{
 set showtabline=0
 
-" Arrows to navigate the popup please
+" Arrows to navigate the pop-up please
 let g:CtrlSpaceUseArrowsInTerm = 1
 
 " Use rg if it's installed
@@ -355,7 +355,7 @@ function! <SID>ToggleNumber()
     endif
 endfunc
 
-" strips trailing whitespace at the end of files. this
+" strips trailing whitespace at the end of files. This
 " is called on buffer write in the autogroup above.
 function! <SID>StripTrailingWhitespaces()
     " save last search & cursor position
