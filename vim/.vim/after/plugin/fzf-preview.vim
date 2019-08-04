@@ -8,8 +8,8 @@ if executable('rg')
 
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)  
-  
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+
   " Overriding fzf.vim's default :Files command.
   " Pass zero or one args to Files command (which are then passed to Fzf_dev). Support file path completion too.
   command! -nargs=? -complete=file Files call Fzf_dev(<q-args>)
@@ -44,14 +44,14 @@ function! Fzf_dev(qargs)
 
     return l:result
   endfunction
-  
+
   function! s:edit_file(lines)
     if len(a:lines) < 2 | return | endif
 
     let l:cmd = get({'ctrl-x': 'split',
                  \ 'ctrl-v': 'vertical split',
                  \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-    
+
     for l:item in a:lines[1:]
       let l:pos = stridx(l:item, ' ')
       let l:file_path = l:item[pos+1:-1]
