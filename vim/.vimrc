@@ -159,9 +159,9 @@ set spell spelllang=en_au
 " Leader Shortcuts {{{
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>h :A<CR>
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>v :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>V :source $MYVIMRC<CR>
 nnoremap <leader>l :call <SID>ToggleNumber()<CR>
 
 " Clear search highlighting
