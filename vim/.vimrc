@@ -170,6 +170,9 @@ nnoremap <silent> <leader><CR> :noh<CR>
 " TODO make this use fzf with rg
 nnoremap <leader>f :Rg 
 
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
 nnoremap <leader>c :SyntasticCheck<CR>:Errors<CR>
 nnoremap <leader>1 :set number!<CR>
 nnoremap <leader>d :GoDoc 
