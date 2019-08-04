@@ -106,3 +106,6 @@
 [submodule "vim/.vim/bundle/nerdtree"]
 	path = vim/.vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "vim/.vim/bundle/vim-indent-object"]
+	path = vim/.vim/bundle/vim-indent-object
+	url = https://github.com/michaeljsmith/vim-indent-object.git
