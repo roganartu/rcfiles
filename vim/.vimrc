@@ -188,6 +188,11 @@ nnoremap <F9> :!clear && %:p<Enter>
 nnoremap <F10> :!clear && zsh<Enter><Enter>
 " }}}
 
+" Tagbar {{{
+" Use F8 to toggle Tagbar display
+nmap <F8> :TagbarToggle<CR>
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
