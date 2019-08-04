@@ -143,11 +143,17 @@ set scrolloff=20
 
 " Spell checking {{{
 " Toggle the spell checker
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :set spell!<cr>
 
 " Underline bad spellings
 hi clear SpellBad
 hi SpellBad cterm=underline,italic
+
+" Use a spellfile that can be added and managed by this repo
+set spellfile=~/.vim/spell/en.utf-8.add
+
+" I'll die before I voluntarily drop the u from colour.
+set spell spelllang=en_au
 " }}}
 
 " Leader Shortcuts {{{
