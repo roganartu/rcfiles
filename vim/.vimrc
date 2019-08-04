@@ -74,7 +74,7 @@ if has('mouse')
 endif
 
 set lazyredraw
-set showmatch           " higlight matching parenthesis
+set showmatch           " highlight matching parenthesis
 set fillchars+=vert:┃
 set relativenumber      " Default to relative line numbers
 
@@ -107,7 +107,6 @@ set hlsearch            " highlight all matches
 set magic               " regex searching
 
 " Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
 vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " }}}
