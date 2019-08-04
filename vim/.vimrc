@@ -266,9 +266,26 @@ set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 " }}}
 
 " airline {{{
+" Always show the status line
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'bubblegum'
+
+" Enable airline tabs
+let g:airline#extensions#tabline#enabled = 1
+" }}}
+
+" Ctrl-Space {{{
+set showtabline=0
+
+" Arrows to navigate the popup please
+let g:CtrlSpaceUseArrowsInTerm = 1
+
+" Use rg if it's installed
+" TODO figure out the incantation for fzf with preview and rg instead
+if executable("rg")
+    let g:CtrlSpaceGlobCommand = 'rg -l --nocolor --hidden --follow --glob "!.git/*" -g ""'
+endif
 " }}}
 
 " mundo {{{
