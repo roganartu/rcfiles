@@ -1,6 +1,12 @@
 " Tony Lykke
 " Borrows heavily from Douglas Black's .vimrc:
 "     https://github.com/dougblack/dotfiles/blob/master/.vimrc
+" Black is broken on work's vim, disable it temporarily until
+" I can be bothered adding neovim appimage to this repo
+" and running it instead of system vim:
+" https://github.com/psf/black/issues/394
+let g:pathogen_disabled = []
+call add(g:pathogen_disabled, 'black')
 execute pathogen#infect()
 
 " Encoding {{{
