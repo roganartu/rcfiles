@@ -26,7 +26,7 @@ map <silent> <F11>
 :set guioptions -=r
 
 " Use a good font
-:set guifont="FuraCode Nerd Font Mono"
+:set guifont=FuraCode\ Nerd\ Font\ Mono
 " }}}
 
 " Colours {{{
