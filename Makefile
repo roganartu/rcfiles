@@ -5,7 +5,7 @@ vim: .PHONY submodules
 	ln -s -n `pwd`/vim/.vim ~/.vim
 	ln -s -n `pwd`/vim/.vimrc ~/.vimrc
 	mkdir -p ~/.venvs
-	source ~/.venvs/vim/bin/activate || python3.6 -m virtualenv -p $(which python3.6) ~/.venvs/vim
+	bash -c "source ~/.venvs/vim/bin/activate" || python3.6 -m virtualenv -p $(which python3.6) ~/.venvs/vim
 	~/.venvs/vim/bin/pip install black
 
 tmux: .PHONY submodules
