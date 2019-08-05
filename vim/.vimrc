@@ -13,7 +13,23 @@ execute pathogen#infect()
 set encoding=utf-8
 " }}}
 
-" Colors {{{
+" gVim {{{
+" Pass through the keyboard shortcut for fullscreen to gVim
+map <silent> <F11>
+\    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+" Lose the menu bar
+:set guioptions -=m
+" and the toolbar
+:set guioptions -=T
+" and the scrollbar
+:set guioptions -=r
+
+" Use a good font
+:set guifont="FuraCode Nerd Font Mono"
+" }}}
+
+" Colours {{{
 syntax enable           " enable syntax processing
 set t_Co=256
 colorscheme badwolf
