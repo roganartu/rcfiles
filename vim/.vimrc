@@ -397,7 +397,10 @@ set splitright
 " }}}
 
 " autoformatting {{{
-autocmd FileType python autocmd BufWritePre <buffer> :Black
+" Only try to black if black is loaded
+if globpath(&runtimepath, "black", 1) !=# ''
+    autocmd FileType python autocmd BufWritePre <buffer> :Black
+endif
 " }}}
 
 " markdown {{{
