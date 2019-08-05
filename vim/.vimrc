@@ -196,6 +196,28 @@ nmap <silent> <F8> :TagbarToggle<CR>
 let g:tagbar_autoshowtag = 1
 " }}}
 
+" Completion tweaks {{{
+" Select the longest completion item, show it even when there's only one,
+" and don't insert anything until enter is pressed.
+set completeopt=longest,menuone,noinsert
+
+" Select with enter instead of <C-Y>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Simulate down when the completion menu opens, so something is always
+" selected.
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+" }}}
+
+" Indent Guides {{{
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Thin guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+" }}}
+
 " CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
