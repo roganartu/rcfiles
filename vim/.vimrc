@@ -202,6 +202,10 @@ nmap <silent> <F8> :TagbarToggle<CR>
 let g:tagbar_autoshowtag = 1
 " }}}
 
+" Gutentags {{{
+let g:gutentags_cache_dir = "~/.cache/gutentags"
+" }}}
+
 " Completion tweaks {{{
 " Select the longest completion item, show it even when there's only one,
 " and don't insert anything until enter is pressed.
