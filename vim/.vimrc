@@ -53,7 +53,6 @@ map <Leader>w :w<CR>
 
 " Misc {{{
 set backspace=indent,eol,start
-set clipboard=unnamed
 set noswapfile
 " }}}
 
@@ -376,6 +375,21 @@ noremap <leader>u :MundoToggle<CR>
 
 " fzf {{{
 set rtp+=~/.fzf
+" }}}
+
+" Copy/Paste {{{
+set clipboard+=unnamedplus
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 " }}}
 
 " autocorrect {{{
