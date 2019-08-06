@@ -215,6 +215,19 @@ nnoremap <F9> :!clear && %:p<Enter>
 nnoremap <F10> :!clear && zsh<Enter><Enter>
 " }}}
 
+" Embedded terminal {{{
+" Neovim terminal
+augroup neovim_terminal
+  autocmd!
+
+  " Enter Terminal-mode (insert) automatically
+  autocmd TermOpen * startinsert
+
+  " Disables number lines on terminal buffers
+  autocmd TermOpen * :set nonumber norelativenumber
+augroup END
+" }}}
+
 " Tagbar {{{
 " Use F8 to toggle Tagbar display
 nmap <silent> <F8> :TagbarToggle<CR>
