@@ -207,6 +207,9 @@ nnoremap <leader>t :TestFile<CR>
 nnoremap <leader>r :call <SID>RunFile()<CR>
 nnoremap <leader>b :call <SID>BuildFile()<CR>
 vnoremap <leader>y "+y
+
+" Abandon a buffer without closing the window/split
+nnoremap <leader>q :BD<CR>
 " }}}
 
 " IDE stuff {{{
