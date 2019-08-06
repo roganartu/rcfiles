@@ -187,7 +187,7 @@ nnoremap <leader>V :source $MYVIMRC<CR>
 nnoremap <leader>l :call <SID>ToggleNumber()<CR>
 
 " Clear search highlighting
-nnoremap <silent> <leader><CR> :noh<CR>
+nnoremap <silent> <leader><CR> :let @/=""<CR>
 
 " TODO make this use fzf with rg
 nnoremap <leader>f :Rg 
