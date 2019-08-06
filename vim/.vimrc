@@ -277,6 +277,9 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " Close vim if the last thing left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Always change the nerdtree cwd to the current nerdtree root
+let g:NERDTreeChDirMode = 2
 " }}}
 
 " NerdCommenter {{{
