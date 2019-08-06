@@ -7,6 +7,7 @@ vim: .PHONY submodules
 	mkdir -p ~/.venvs
 	bash -c "source ~/.venvs/vim/bin/activate" || python3.6 -m virtualenv -p $(which python3.6) ~/.venvs/vim
 	~/.venvs/vim/bin/pip install black
+	~/.venvs/vim/bin/pip install neovim
 	# Necessary for mundo to work
 	mkdir -p ~/.cache/vim/undo
 

@@ -93,3 +93,4 @@ ssh
 nvim
 neovim
 vim
+makefile

@@ -280,6 +280,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Always change the nerdtree cwd to the current nerdtree root
 let g:NERDTreeChDirMode = 2
+
+" Let wildignore tell us what to ignore.
+" The fugitive gitignore extension automatically imports .gitignore
+" for a project, so this makes nerdtree ignore things in gitignore.
+let NERDTreeRespectWildIgnore = 1
 " }}}
 
 " NerdCommenter {{{
