@@ -44,13 +44,16 @@ install: submodules vim zsh fzf tmux bin
 
 update: clean install
 
-update_binaries: update_bat update_fd
+update_binaries: update_bat update_fd update_nvim
 
 update_bat: .PHONY
 	./sharkdp/update.sh bat
 
 update_fd: .PHONY
 	./sharkdp/update.sh fd
+
+update_nvim: .PHONY
+	./neovim/update.sh neovim
 
 clean: .PHONY
 	zsh -c 'setopt null_glob; \
