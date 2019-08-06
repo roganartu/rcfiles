@@ -96,6 +96,9 @@ export NVM_DIR="$HOME/.nvm"
 # Force tmux to use 256 colours
 alias tmux="TERM=xterm-256color tmux -2"
 
+# Use neovim instead of vim
+alias vim="nvim"
+
 # Some overrides
 # start typing + [Up-Arrow] - fuzzy find history forward
 autoload -U up-line-or-beginning-search
