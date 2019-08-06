@@ -188,6 +188,9 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Handy alias for reloading all tmux windows (which reloads zshrc everywhere)
+alias reload-tmux="tmux display -p '#S' | xargs -I{} sh -c \"tmux list-windows -t {} | cut -d: -f1 | xargs -P0 -I\[\] tmux respawn-pane -kt {}:\[\]\""
+
 # Include a local zsh overrides file if it's present.
 # This isn't checked in, and is useful for my current employer
 # who doesn't like things related to their environment
