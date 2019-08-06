@@ -37,10 +37,13 @@ fzf: .PHONY submodules
 	ln -s -n `pwd`/fzf/.fzf ~/.fzf
 	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
 
+nvim: .PHONY submodules
+	ln -s -n `pwd`/neovim ~/.config/nvim
+
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh fzf tmux bin
+install: submodules vim zsh fzf tmux nvim bin
 
 update: clean install
 

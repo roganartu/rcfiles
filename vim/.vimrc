@@ -388,19 +388,17 @@ augroup END
 
 " splits {{{
 " Use Alt+Arrows to move around, same as my tmux config
-if has('nvim')
-  nnoremap <A-Down> <C-W><C-J>
-  nnoremap <A-Up> <C-W><C-K>
-  nnoremap <A-Right> <C-W><C-L>
-  nnoremap <A-Left> <C-W><C-H>
-else
-  let g:tmux_navigator_no_mappings = 1
+" TODO maybe use neovim shell instead of tmux?
+" nnoremap <A-Down> <C-W><C-J>
+" nnoremap <A-Up> <C-W><C-K>
+" nnoremap <A-Right> <C-W><C-L>
+" nnoremap <A-Left> <C-W><C-H>
+let g:tmux_navigator_no_mappings = 1
 
-  nnoremap <silent> <A-Left> :TmuxNavigateLeft<cr>
-  nnoremap <silent> <A-Down> :TmuxNavigateDown<cr>
-  nnoremap <silent> <A-Up> :TmuxNavigateUp<cr>
-  nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
-end
+nnoremap <silent> <A-Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <A-Down> :TmuxNavigateDown<cr>
+nnoremap <silent> <A-Up> :TmuxNavigateUp<cr>
+nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 " }}}
