@@ -32,12 +32,6 @@ if !has('nvim')
 endif
 " }}}
 
-" nvim-specific settings {{{
-if has('nvim')
-set viminfo+=n~/.nviminfo
-endif
-" }}}
-
 " Colours {{{
 syntax enable           " enable syntax processing
 set t_Co=256
@@ -324,14 +318,18 @@ set writebackup
 " }}}
 
 " Sessions {{{
-" Remember things between sessions
-" '20  - remember marks for 20 previous files
-" \"50 - save 50 lines for each register
-" :20  - remember 20 items in command-line history
-" /20  - remember 20 items in search history
-" %    - remember the buffer list (if vim started without a file arg)
-" n    - set name of viminfo file
-set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+if !has('nvim')
+  " Remember things between sessions
+  " This is only necessary outside nvim, which automatically
+  " remembers a bunch of this stuff, yay sane defaults!
+  " '20  - remember marks for 20 previous files
+  " \"50 - save 50 lines for each register
+  " :20  - remember 20 items in command-line history
+  " /20  - remember 20 items in search history
+  " %    - remember the buffer list (if vim started without a file arg)
+  " n    - set name of viminfo file
+  set viminfo='20,\"50,:20,/20,%,n~/.viminfo
+endif
 
 nnoremap <leader>s :mksession<CR>
 
