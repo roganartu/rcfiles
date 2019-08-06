@@ -62,6 +62,7 @@ clean: .PHONY
 	zsh -c 'setopt null_glob; \
 		rm -f \
 			~/bin(@) \
+			~/.config/nvim(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
 			~/.zshrc(@) \
