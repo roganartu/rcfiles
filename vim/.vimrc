@@ -13,20 +13,29 @@ execute pathogen#infect()
 set encoding=utf-8
 " }}}
 
-" gVim {{{
-" Pass through the keyboard shortcut for fullscreen to gVim
-map <silent> <F11>
-\    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
-" Lose the menu bar
-:set guioptions -=m
-" and the toolbar
-:set guioptions -=T
-" and the scrollbar
-:set guioptions -=r
+" nvim exclusions {{{
+if !has('nvim')
+  " Pass through the keyboard shortcut for fullscreen to gVim
+  map <silent> <F11>
+  \    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
 
-" Use a good font
-:set guifont=FuraCode\ Nerd\ Font\ Mono
+  " Lose the menu bar
+  set guioptions -=m
+  " and the toolbar
+  set guioptions -=T
+  " and the scrollbar
+  set guioptions -=r
+
+  " Use a good font
+  set guifont=FuraCode\ Nerd\ Font\ Mono
+endif
+" }}}
+
+" nvim-specific settings {{{
+if has('nvim')
+set viminfo+=n~/.nviminfo
+endif
 " }}}
 
 " Colours {{{
@@ -88,14 +97,17 @@ if has('mouse')
   inoremap <3-LeftMouse> <Nop>
   inoremap <4-LeftMouse> <Nop>
   " Without this, mouse doesn't work across splits
-  if has("mouse_sgr")
+  if !has('nvim')
+    if has("mouse_sgr")
       set ttymouse=sgr
-  else
+    else
       set ttymouse=xterm2
-  end
+    end
+  endif
 endif
 
 set lazyredraw
+set ttyfast
 set showmatch           " highlight matching parenthesis
 set fillchars+=vert:┃
 set relativenumber      " Default to relative line numbers
@@ -146,10 +158,10 @@ set foldlevelstart=10   " start with fold level of 1
 " bulk line movement using the relative line numbers
 " from the gutter.
 " Source: https://stackoverflow.com/a/21000307/943833
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
-nnoremap <Up> gk
-nnoremap <Down> gj
+nnoremap <expr> <silent>j v:count ? 'j' : 'gj'
+nnoremap <expr> <silent> k v:count ? 'k' : 'gk'
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
 nnoremap gV `[v`]
 
 " 0 should go to first non-whitespace char
@@ -236,14 +248,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " }}}
 
-" Indent Guides {{{
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Thin guides
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-" }}}
-
 " CtrlP {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -321,24 +325,24 @@ set writebackup
 
 " Sessions {{{
 " Remember things between sessions
-" '20  - remember marks for 20 previous files 
-" \"50 - save 50 lines for each register 
-" :20  - remember 20 items in command-line history 
-" /20  - remember 20 items in search history 
-" %    - remember the buffer list (if vim started without a file arg) 
+" '20  - remember marks for 20 previous files
+" \"50 - save 50 lines for each register
+" :20  - remember 20 items in command-line history
+" /20  - remember 20 items in search history
+" %    - remember the buffer list (if vim started without a file arg)
 " n    - set name of viminfo file
 set viminfo='20,\"50,:20,/20,%,n~/.viminfo
 
 nnoremap <leader>s :mksession<CR>
 
-" Define what to save with :mksession 
+" Define what to save with :mksession
 " blank    - empty windows
-" buffers  - all buffers not only ones in a window 
-" curdir   - the current directory 
-" folds    - including manually created ones 
-" help     - the help window 
-" options  - all options and mapping 
-" winsize  - window sizes 
+" buffers  - all buffers not only ones in a window
+" curdir   - the current directory
+" folds    - including manually created ones
+" help     - the help window
+" options  - all options and mapping
+" winsize  - window sizes
 " tabpages - all tab pages
 set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 " }}}
@@ -386,17 +390,19 @@ augroup END
 
 " splits {{{
 " Use Alt+Arrows to move around, same as my tmux config
-" nnoremap <A-Down> <C-W><C-J>
-" nnoremap <A-Up> <C-W><C-K>
-" nnoremap <A-Right> <C-W><C-L>
-" nnoremap <A-Left> <C-W><C-H>
-let g:tmux_navigator_no_mappings = 1
+if has('nvim')
+  nnoremap <A-Down> <C-W><C-J>
+  nnoremap <A-Up> <C-W><C-K>
+  nnoremap <A-Right> <C-W><C-L>
+  nnoremap <A-Left> <C-W><C-H>
+else
+  let g:tmux_navigator_no_mappings = 1
 
-nnoremap <silent> <A-Left> :TmuxNavigateLeft<cr>
-nnoremap <silent> <A-Down> :TmuxNavigateDown<cr>
-nnoremap <silent> <A-Up> :TmuxNavigateUp<cr>
-nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
-
+  nnoremap <silent> <A-Left> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <A-Down> :TmuxNavigateDown<cr>
+  nnoremap <silent> <A-Up> :TmuxNavigateUp<cr>
+  nnoremap <silent> <A-Right> :TmuxNavigateRight<cr>
+end
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 " }}}
