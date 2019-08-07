@@ -94,3 +94,5 @@ nvim
 neovim
 vim
 makefile
+quantile
+bundle
