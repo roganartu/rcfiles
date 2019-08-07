@@ -257,14 +257,6 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 " }}}
 
-" CtrlP {{{
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\vbuild/|dist/|venv/|target/|\.(o|swp|pyc|egg)$'
-let g:ctrlp_map = '<c-o>'
-" }}}
-
 " Syntastic {{{
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:syntastic_ignore_files = ['.java$']
