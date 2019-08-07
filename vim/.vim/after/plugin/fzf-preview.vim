@@ -63,7 +63,7 @@ function! Fzf_dev(qargs)
         \ 'source':  <sid>files(a:qargs),
         \ 'sink*':   function('s:edit_file'),
         \ 'options': '-m ' . l:fzf_files_options,
-        \ 'up':      '20%' })
+        \ 'up':      '50%' })
 endfunction
 
 " Ctrl-P to open the file prompt, copying vscode
