@@ -381,6 +381,11 @@ let g:airline#extensions#tabline#enabled = 1
 " Ctrl-Space {{{
 set showtabline=0
 
+" Neovim requires this
+if has('nvim')
+  let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+endif
+
 " Arrows to navigate the pop-up please
 let g:CtrlSpaceUseArrowsInTerm = 1
 

@@ -142,3 +142,6 @@
 [submodule "vim/.vim/bundle/vim-bufkill"]
 	path = vim/.vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
+[submodule "vim/.vim/bundle/vim-unimpaired"]
+	path = vim/.vim/bundle/vim-unimpaired
+	url = https://github.com/tpope/vim-unimpaired.git
