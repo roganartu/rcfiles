@@ -79,9 +79,6 @@ set wildignore=*.o,*~,*.pyc,git\*,.hg\*,.svn\*
 " Hide buffers when they are abandoned
 set hid
 
-" Wrap when moving left/right at EOL/BOL
-set whichwrap+=<,>,h,l,[,]
-
 " Use a mouse sometimes, even though it's blasphemy
 if has('mouse')
   set mouse=a
