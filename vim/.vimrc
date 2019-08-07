@@ -398,7 +398,7 @@ let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:airline_exclude_preview = 1
 
 " Store the cache dir in the .cache dir
-let g:CtrlSpaceCacheDir = "$HOME/.cache/vim/ctrlspace"
+let g:CtrlSpaceCacheDir = $HOME."/.cache/vim/ctrlspace"
 
 " Use rg if it's installed
 " TODO figure out the incantation for fzf with preview and rg instead
