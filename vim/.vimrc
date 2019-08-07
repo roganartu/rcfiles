@@ -164,8 +164,8 @@ map 0 ^
 vnoremap < <gv
 vnoremap > >gv
 
-" Always keep 20 lines below the cursor
-set scrolloff=20
+" Always keep 15 lines below the cursor
+set scrolloff=15
 " }}}
 
 " Spell checking {{{
