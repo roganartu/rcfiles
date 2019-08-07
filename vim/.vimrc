@@ -389,10 +389,21 @@ endif
 " Arrows to navigate the pop-up please
 let g:CtrlSpaceUseArrowsInTerm = 1
 
+" Save workspaces automatically
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+
+" Disable airline preview to avoid status bar conflicts
+let g:airline_exclude_preview = 1
+
+" Store the cache dir in the .cache dir
+let g:CtrlSpaceCacheDir = "$HOME/.cache/vim/ctrlspace"
+
 " Use rg if it's installed
 " TODO figure out the incantation for fzf with preview and rg instead
 if executable("rg")
-    let g:CtrlSpaceGlobCommand = 'rg -l --nocolor --hidden --follow --glob "!.git/*" -g ""'
+    let g:CtrlSpaceGlobCommand = 'rg -l --hidden --follow --glob "!.git/*" -g ""'
 endif
 " }}}
 

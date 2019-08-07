@@ -10,6 +10,8 @@ vim: .PHONY submodules
 	~/.venvs/vim/bin/pip install neovim
 	# Necessary for mundo to work
 	mkdir -p ~/.cache/vim/undo
+	# ctrlspace stores it's cachefile here
+	mkdir -p ~/.cache/ctrlspace
 
 tmux: .PHONY submodules
 	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
