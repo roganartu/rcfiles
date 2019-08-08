@@ -133,9 +133,6 @@
 [submodule "vim/.vim/bundle/vim-fugitive"]
 	path = vim/.vim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/.vim/bundle/gitignore.vim"]
-	path = vim/.vim/bundle/gitignore.vim
-	url = https://github.com/euclio/gitignore.vim.git
 [submodule "vim/.vim/bundle/vim-bufkill"]
 	path = vim/.vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
