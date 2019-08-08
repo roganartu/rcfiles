@@ -140,8 +140,7 @@ alias cat=_bat_if_present
 export ANSIBLE_NOCOWS=1
 
 export GOPATH=~/Code/go
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:~/bin
 
