@@ -261,12 +261,6 @@ let g:syntastic_python_python_exec = 'python3'
 " }}}
 
 " NERDTree {{{
-" Open NERDTree if vim is started with no file, or if the path provided is a
-" dir
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-
 " Close vim if the last thing left open is NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
