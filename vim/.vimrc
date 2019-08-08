@@ -290,6 +290,10 @@ nmap <C-_>   <Plug>NERDCommenterToggle
 vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 " }}}
 
+" Icons {{{
+let g:webdevicons_enable = 1
+" }}}
+
 " git-gutter {{{
 if exists('&signcolumn')  " Vim 7.4.2201
   set signcolumn=yes
