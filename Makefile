@@ -18,6 +18,10 @@ tmux: .PHONY submodules
 	mkdir -p ~/.tmux
 	ln -s -n `pwd`/tmux/plugins ~/.tmux/plugins
 
+git: .PHONY
+	ln -s -n `pwd`/git/.gitignore ~/.gitignore
+	git config --global core.excludesfile ~/.gitignore
+
 zsh: .PHONY submodules
 	ln -s -n `pwd`/zsh/.zshrc ~/.zshrc
 	ln -s -n `pwd`/zsh/.zshenv ~/.zshenv
@@ -46,7 +50,7 @@ nvim: .PHONY submodules
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh fzf tmux nvim bin
+install: submodules vim zsh fzf tmux nvim bin git
 
 update: clean install
 
@@ -68,6 +72,7 @@ clean: .PHONY
 			~/.config/nvim(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
+			~/.gitignore(@) \
 			~/.zshrc(@) \
 			~/.zshenv(@) \
 			~/.oh-my-zsh(@) \
