@@ -35,7 +35,21 @@ function! Fzf_dev(qargs)
     let l:result = []
     for l:candidate in a:candidates
       let l:filename = fnamemodify(l:candidate, ':p:t')
-      let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      " temporarily disable webdevicons, because it's causing this preview window to
+      " be extremely slow.
+      " This is because it calls WebDevIconsGetFileTypeSymbol() once per file.
+      " This call recurses down and ends up attempting to do about 10 pattern
+      " matches per file, each of which takes about 0.2s
+      " See https://github.com/ryanoasis/vim-devicons/blob/69028519c368304a6bf95f629b924c2ea85c69db/plugin/webdevicons.vim#L298
+      " And the trace:
+      " 48940              0.081112     for [pattern, glyph] in items(g:WebDevIconsUnicodeDecorateFileNodesPatternSymbols)
+      " 44046              0.218383       if match(fileNode, pattern) != -1
+      "                                     let symbol = glyph
+      "                                     break
+      "                                   endif
+      " 44046              0.019412     endfor
+      "let l:icon = WebDevIconsGetFileTypeSymbol(l:filename, isdirectory(l:filename))
+      let l:icon = "·" " Need to use a non-whitespace character so the logic to split the filename before feeding to bat for preview works correctly
       call add(l:result, printf('%s %s', l:icon, l:candidate))
     endfor
 
