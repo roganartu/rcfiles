@@ -98,3 +98,6 @@ quantile
 bundle
 mustache
 sys
+icons
+recurses
+vim
