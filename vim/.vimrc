@@ -238,6 +238,9 @@ let g:tagbar_autoshowtag = 1
 
 " Gutentags {{{
 let g:gutentags_cache_dir = "~/.cache/gutentags"
+
+" Use rg to list files to tag
+let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/*"'
 " }}}
 
 " Completion tweaks {{{
