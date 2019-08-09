@@ -1,3 +1,9 @@
 # vim ctrlspace session file
 CS_SESSION
 
+# VSCode project dir
+*.vscode
+*.project
+
+# virtualenv bindings
+*.python-version
