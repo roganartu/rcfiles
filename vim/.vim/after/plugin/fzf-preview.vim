@@ -6,7 +6,12 @@
 " ripgrep
 if executable('rg')
 
-  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+  " Having two vars here lets us create actions that first reset this back to
+  " the original setting, before appending more options.
+  " Consider eg Go projects where you want rg to ignore the vendor dir even
+  " though it's not in the .gitignore because one normally checks it in.
+  let $FZF_DEFAULT_COMMAND_BASE = 'rg --files --hidden --follow --glob "!.git/*"'
+  let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND_BASE
   set grepprg=rg\ --vimgrep
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 
