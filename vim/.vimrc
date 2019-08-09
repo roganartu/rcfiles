@@ -244,9 +244,9 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " }}}
 
 " Completion tweaks {{{
-" Select the longest completion item, show it even when there's only one,
-" and don't insert anything until enter is pressed.
-set completeopt=longest,menuone,noinsert
+" Show completion menu even when there's only one and don't insert
+" anything until enter is pressed.
+set completeopt=menuone,noinsert
 
 " Select with enter instead of <C-Y>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
