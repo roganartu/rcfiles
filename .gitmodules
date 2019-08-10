@@ -142,3 +142,6 @@
 [submodule "deoplete.nvim"]
 	path = vim/.vim/bundle/deoplete.vim
 	url = https://github.com/Shougo/deoplete.nvim.git
+[submodule "vim/.vim/bundle/deoplete-jedi"]
+	path = vim/.vim/bundle/deoplete-jedi
+	url = https://github.com/deoplete-plugins/deoplete-jedi.git

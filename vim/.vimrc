@@ -245,7 +245,7 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " Completion tweaks {{{
 " Show completion menu even when there's only one and don't insert
 " anything until enter is pressed.
-set completeopt=menuone,noinsert
+set completeopt=menuone,noinsert,preview
 
 " Select with enter instead of <C-Y>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -257,6 +257,12 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 
 " Use deoplete for completions
 let g:deoplete#enable_at_startup = 1
+
+" Use the venv for the jedi completion server
+let g:deoplete#sources#jedi#python_path = $HOME."/.venvs/vim/bin/python"
+
+" Show jedi dosctrings
+let g:deoplete#sources#jedi#show_docstring = 1
 " }}}
 
 " Syntastic {{{
