@@ -1,17 +1,24 @@
 submodules: .PHONY
 	git submodule update --init --recursive
 
-vim: .PHONY submodules
+vim: .PHONY submodules vim_py3_venv vim_py2_venv
 	ln -s -n `pwd`/vim/.vim ~/.vim
 	ln -s -n `pwd`/vim/.vimrc ~/.vimrc
-	mkdir -p ~/.venvs
-	bash -c "source ~/.venvs/vim/bin/activate" || python3.6 -m virtualenv -p "`which python3.6`" ~/.venvs/vim
-	~/.venvs/vim/bin/pip install black
-	~/.venvs/vim/bin/pip install neovim
 	# Necessary for mundo to work
 	mkdir -p ~/.cache/vim/undo
 	# ctrlspace stores it's cachefile here
 	mkdir -p ~/.cache/ctrlspace
+
+vim_py3_venv: .PHONY
+	mkdir -p ~/.venvs
+	bash -c "source ~/.venvs/vim/bin/activate" || python3 -m virtualenv -p "`which python3.6`" ~/.venvs/vim
+	~/.venvs/vim/bin/pip install black
+	~/.venvs/vim/bin/pip install neovim
+
+vim_py2_venv: .PHONY
+	mkdir -p ~/.venvs
+	bash -c "source ~/.venvs/vim_py2/bin/activate" || python3 -m virtualenv -p "`which python2.7`" ~/.venvs/vim_py2
+	~/.venvs/vim_py2/bin/pip install neovim
 
 tmux: .PHONY submodules
 	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
