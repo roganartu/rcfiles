@@ -466,6 +466,25 @@ set splitright
 if globpath(&runtimepath, "black", 1) !=# ''
     autocmd FileType python autocmd BufWritePre <buffer> :Black
 endif
+
+" Enable rust auto-formatting
+let g:rustfmt_autosave = 1
+" }}}
+
+" Rust {{{
+let g:racer_cmd = $HOME."/.cargo/bin/racer"
+
+" Include full function def, args, and return type in completions
+let g:racer_experimental_completer = 1
+
+" Insert parens when completing functions and other things that need them
+let g:racer_insert_paren = 1
+
+" Some nice mappings for useful shortcuts
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 " }}}
 
 " markdown {{{

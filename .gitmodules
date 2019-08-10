@@ -145,3 +145,9 @@
 [submodule "vim/.vim/bundle/deoplete-jedi"]
 	path = vim/.vim/bundle/deoplete-jedi
 	url = https://github.com/deoplete-plugins/deoplete-jedi.git
+[submodule "vim/.vim/bundle/rust.vim"]
+	path = vim/.vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule "vim/.vim/bundle/vim-racer"]
+	path = vim/.vim/bundle/vim-racer
+	url = https://github.com/racer-rust/vim-racer.git
