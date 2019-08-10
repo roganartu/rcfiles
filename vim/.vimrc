@@ -185,12 +185,12 @@ nnoremap <leader>h :A<CR>
 nnoremap <leader>v :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
 nnoremap <leader>V :source $MYVIMRC<CR>
-nnoremap <leader>l :call <SID>ToggleNumber()<CR>
+nnoremap <leader>0 :call <SID>ToggleNumber()<CR>
 
 " Clear search highlighting
 nnoremap <silent> <leader><CR> :let @/=""<CR>
 
-" TODO make this use fzf with rg
+" TODO make this use fzf with rg for that sweet sweet preview pane
 nnoremap <leader>f :Rg 
 
 " Toggle paste mode on and off
@@ -205,7 +205,7 @@ nnoremap <leader>b :call <SID>BuildFile()<CR>
 vnoremap <leader>y "+y
 
 " Abandon a buffer without closing the window/split
-nnoremap <leader>q :BD<CR>
+nnoremap <silent> <leader>q :BD<CR>
 " }}}
 
 " IDE stuff {{{
@@ -263,6 +263,15 @@ let g:deoplete#sources#jedi#python_path = $HOME."/.venvs/vim/bin/python"
 
 " Show jedi dosctrings
 let g:deoplete#sources#jedi#show_docstring = 1
+" }}}
+
+" Togglelist {{{
+" Don't register the default bindings, they are already used for other things.
+let g:toggle_list_no_mappings = 1
+
+" Map them manually
+nmap <script> <silent> <leader>l :call ToggleLocationList()<CR>
+nmap <script> <silent> <leader>ll :call ToggleQuickfixList()<CR>
 " }}}
 
 " Syntastic {{{

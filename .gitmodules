@@ -151,3 +151,6 @@
 [submodule "vim/.vim/bundle/vim-racer"]
 	path = vim/.vim/bundle/vim-racer
 	url = https://github.com/racer-rust/vim-racer.git
+[submodule "vim/.vim/bundle/vim-togglelist"]
+	path = vim/.vim/bundle/vim-togglelist
+	url = https://github.com/milkypostman/vim-togglelist.git
