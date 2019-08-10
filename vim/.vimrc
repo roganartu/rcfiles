@@ -214,6 +214,11 @@ nnoremap <F9> :!clear && %:p<Enter>
 nnoremap <F10> :!clear && zsh<Enter><Enter>
 " }}}
 
+" Run Neomake on save {{{
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
+" }}}
+
 " Embedded terminal {{{
 " Neovim terminal
 augroup neovim_terminal
