@@ -13,7 +13,6 @@ execute pathogen#infect()
 set encoding=utf-8
 " }}}
 
-
 " nvim exclusions {{{
 if !has('nvim')
   " Pass through the keyboard shortcut for fullscreen to gVim
@@ -255,6 +254,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " selected.
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" Use deoplete for completions
+let g:deoplete#enable_at_startup = 1
 " }}}
 
 " Syntastic {{{
