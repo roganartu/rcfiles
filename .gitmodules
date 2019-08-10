@@ -139,3 +139,6 @@
 [submodule "vim/.vim/bundle/vim-unimpaired"]
 	path = vim/.vim/bundle/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
+[submodule "deoplete.nvim"]
+	path = vim/.vim/bundle/deoplete.vim
+	url = https://github.com/Shougo/deoplete.nvim.git
