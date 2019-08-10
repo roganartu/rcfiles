@@ -7,7 +7,7 @@ vim: .PHONY submodules vim_py3_venv vim_py2_venv
 	# Necessary for mundo to work
 	mkdir -p ~/.cache/vim/undo
 	# ctrlspace stores it's cachefile here
-	mkdir -p ~/.cache/ctrlspace
+	mkdir -p ~/.cache/vim/ctrlspace
 
 venvs: vim_py3_venv vim_py2_venv
 

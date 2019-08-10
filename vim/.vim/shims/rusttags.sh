@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rusty-tags vi && mv rusty-tags.vi tags.tmp
+rusty-tags vi --output "${HOME}/.cache/gutentags/tags.tmp"
