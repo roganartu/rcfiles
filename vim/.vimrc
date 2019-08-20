@@ -106,7 +106,7 @@ set listchars=eol:¬,tab:>-,trail:~,extends:>,precedes:<,space:·
 set list
 
 " highlight trailing space
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=darkmagenta guibg=darkmagenta
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -244,6 +244,9 @@ augroup END
 " Tagbar {{{
 " Use F8 to toggle Tagbar display
 nmap <silent> <F8> :TagbarToggle<CR>
+" Make sure that the tagbar is open, I don't really care what file
+" is open.
+call tagbar#autoopen(0)
 
 " Auto-expand closed folds if the current tag is inside them
 let g:tagbar_autoshowtag = 1
@@ -277,6 +280,9 @@ let g:deoplete#sources#jedi#python_path = $HOME."/.venvs/vim/bin/python"
 
 " Show jedi dosctrings
 let g:deoplete#sources#jedi#show_docstring = 1
+
+" Ignore some things
+call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
 " }}}
 
 " Togglelist {{{
