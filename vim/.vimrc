@@ -283,6 +283,9 @@ let g:deoplete#sources#jedi#show_docstring = 1
 
 " Ignore some things
 call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
+
+" Allow wider completion window
+call deoplete#custom#source('_', 'max_menu_width', 80)
 " }}}
 
 " Togglelist {{{
