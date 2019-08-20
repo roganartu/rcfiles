@@ -286,6 +286,9 @@ call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
 
 " Allow wider completion window
 call deoplete#custom#source('_', 'max_menu_width', 80)
+
+" Use fuzzy matching
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " }}}
 
 " Togglelist {{{
