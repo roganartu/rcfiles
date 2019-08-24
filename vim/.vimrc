@@ -262,7 +262,11 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " Completion tweaks {{{
 " Show completion menu even when there's only one and don't insert
 " anything until enter is pressed.
-set completeopt=menuone,noinsert,preview
+set completeopt=menuone,noinsert
+
+" Auto-close the preview window when moving
+autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
 " Select with enter instead of <C-Y>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
