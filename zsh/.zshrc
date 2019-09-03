@@ -99,9 +99,9 @@ alias tmux="TERM=xterm-256color tmux -2"
 # Use neovim instead of vim.
 # This has to handle Windows, where FUSE isn't available.
 if nvim --version &> /dev/null ]]; then
-  alias vim="nvim"
+  alias vim="~/bin/nvim"
 else
-  alias vim="nvim-extracted"
+  alias vim="~/bin/nvim-extracted"
 fi
 
 # Some overrides
