@@ -68,6 +68,10 @@ install: submodules vim zsh fzf tmux nvim bin git
 
 update: clean install
 
+update_submodules: submodules
+	git submodule foreach --recursive git fetch
+	git submodule foreach --recursive git pull --ff-only origin master
+
 update_binaries: update_bat update_fd update_nvim
 
 update_bat: .PHONY
