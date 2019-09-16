@@ -1,4 +1,4 @@
-export EDITOR=/usr/bin/vim
+export EDITOR=~/bin/nvim
 export VISUAL=$EDITOR
 skip_global_compinit=1
 
