@@ -70,7 +70,9 @@ update: clean install
 
 update_submodules: submodules
 	git submodule foreach --recursive git fetch
-	git submodule foreach --recursive git pull --ff-only origin master
+	git submodule foreach --recursive git pull --ff-only origin master |:
+	# coc.nvim should update from the release branch
+	cd vim/.vim/bundle/coc.nvim && git checkout release && git pull
 
 update_binaries: update_bat update_fd update_nvim
 
