@@ -295,6 +295,10 @@ call deoplete#custom#source('_', 'max_menu_width', 80)
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " }}}
 
+" JSONC comment formatting {{{
+  autocmd FileType json syntax match Comment +\/\/.\+$+
+" }}}
+
 " Togglelist {{{
 " Don't register the default bindings, they are already used for other things.
 let g:toggle_list_no_mappings = 1
