@@ -1,0 +1,15 @@
+{
+    "suggest.autoTrigger": "always",
+    "suggest.minTriggerInputLength": 2,
+
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootpatterns": ["go.mod"],
+            "filetypes": ["go"]
+        }
+    },
+
+    "python.pythonPath": "~/.venvs/vim/bin/python",
+    "python.venvPath": "~/.venvs"
+}

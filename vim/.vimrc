@@ -53,6 +53,9 @@ map <Leader>w :w<CR>
 " Misc {{{
 set backspace=indent,eol,start
 set noswapfile
+
+" Better display for messages
+set cmdheight=2
 " }}}
 
 " Spaces & Tabs {{{
@@ -262,11 +265,15 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " Completion tweaks {{{
 " Show completion menu even when there's only one and don't insert
 " anything until enter is pressed.
-set completeopt=menuone,noinsert
+set completeopt=menu,longest,menuone
 
 " Auto-close the preview window when moving
 autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
+
+if filereadable("/home/tl/.nvm/versions/node/v12.10.0/bin/node")
+  let g:coc_node_path = "/home/tl/.nvm/versions/node/v12.10.0/bin/node"
+endif
 
 " Select with enter instead of <C-Y>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
@@ -276,23 +283,42 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" Use deoplete for completions
-let g:deoplete#enable_at_startup = 1
+" Enable tab completion in coc.nvim
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+" Shift-tab to move backwards
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Use the venv for the jedi completion server
-let g:deoplete#sources#jedi#python_path = $HOME."/.venvs/vim/bin/python"
+" gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
-" Show jedi dosctrings
-let g:deoplete#sources#jedi#show_docstring = 1
+" Install some extensions.
+" coc.nvim will automatically install these on start if they are missing.
+let g:coc_global_extensions = "coc-json,coc-rls,coc-rust-analyzer,coc-json"
 
-" Ignore some things
-call deoplete#custom#option('ignore_sources', {'_': ['around', 'buffer']})
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
 
-" Allow wider completion window
-call deoplete#custom#source('_', 'max_menu_width', 80)
-
-" Use fuzzy matching
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+" Close the window when completion is done
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " }}}
 
 " JSONC comment formatting {{{
