@@ -139,3 +139,9 @@
 [submodule "vim/.vim/bundle/coc.nvim"]
 	path = vim/.vim/bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+[submodule "vim/.vim/bundle/ultisnips"]
+	path = vim/.vim/bundle/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "vim/.vim/bundle/vim-snippets"]
+	path = vim/.vim/bundle/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
