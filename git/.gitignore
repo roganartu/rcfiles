@@ -7,3 +7,6 @@ CS_SESSION
 
 # virtualenv bindings
 *.python-version
+
+# coc.nvim workspace settings files
+*.vim

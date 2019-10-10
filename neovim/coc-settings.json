@@ -1,6 +1,9 @@
 {
     "suggest.autoTrigger": "always",
     "suggest.minTriggerInputLength": 2,
+    "suggest.enablePreselect": true,
+    "suggest.noselect": false,
+    "suggest.timeout": 500,
 
     "languageserver": {
         "golang": {
