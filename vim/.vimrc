@@ -275,25 +275,26 @@ if filereadable("/home/tl/.nvm/versions/node/v12.10.0/bin/node")
   let g:coc_node_path = "/home/tl/.nvm/versions/node/v12.10.0/bin/node"
 endif
 
-" Select with enter instead of <C-Y>
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Simulate down when the completion menu opens, so something is always
 " selected.
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" Enable tab completion in coc.nvim
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Expand snippets when appropriate
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-" Shift-tab to move backwards
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Tab to move to next item in snippet
+let g:coc_snippet_next = '<tab>'
 
 " gotos
 nmap <silent> gd <Plug>(coc-definition)
