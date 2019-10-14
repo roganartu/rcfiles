@@ -139,10 +139,24 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 " Folding {{{
 "=== folding ===
-set foldmethod=indent   " fold based on indent level
+set foldmethod=syntax   " fold based on language-specific syntax
 set foldnestmax=10      " max 10 depth
 set foldenable          " don't fold files by default on open
-set foldlevelstart=10   " start with fold level of 1
+set foldlevelstart=2    " start with fold level of 2
+
+" Enable Python folding
+let g:python_folding = 1
+
+" FastFold settings
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+" Keep docstrings for folded things
+let b:SimpylFold_docstring_preview = 1
+let b:SimpylFold_fold_docstring = 0
+let g:SimpylFold_fold_docstring = 0
 " }}}
 
 " Line Shortcuts {{{
