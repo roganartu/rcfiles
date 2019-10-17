@@ -141,8 +141,8 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 "=== folding ===
 set foldmethod=syntax   " fold based on language-specific syntax
 set foldnestmax=10      " max 10 depth
-set foldenable          " don't fold files by default on open
-set foldlevelstart=2    " start with fold level of 2
+set foldenable          " fold files by default on open
+set foldlevelstart=10   " start with fold level of 10 so most everything isn't autofolded
 
 " Enable Python folding
 let g:python_folding = 1
