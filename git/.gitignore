@@ -1,5 +1,6 @@
 # vim ctrlspace session file
 CS_SESSION
+.cs_workspaces
 
 # VSCode project dir
 *.vscode
