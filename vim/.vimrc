@@ -567,6 +567,10 @@ let g:racer_experimental_completer = 1
 " Insert parens when completing functions and other things that need them
 let g:racer_insert_paren = 1
 
+" 4 spaces please
+autocmd FileType rust setlocal shiftwidth=4 tabstop=4
+autocmd FileType rust setlocal expandtab
+
 " Some nice mappings for useful shortcuts
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
