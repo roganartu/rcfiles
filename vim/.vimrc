@@ -215,10 +215,6 @@ map <leader>pp :setlocal paste!<cr>
 
 nnoremap <leader>c :SyntasticCheck<CR>:Errors<CR>
 nnoremap <leader>1 :set number!<CR>
-nnoremap <leader>d :GoDoc 
-nnoremap <leader>t :TestFile<CR>
-nnoremap <leader>r :call <SID>RunFile()<CR>
-nnoremap <leader>b :call <SID>BuildFile()<CR>
 vnoremap <leader>y "+y
 
 " Abandon a buffer without closing the window/split
@@ -613,19 +609,6 @@ function! <SID>CleanFile()
     call cursor(l, c)
 endfunc
 
-function! <SID>RunFile()
-    let ext = expand("%:e")
-    if(ext == "go") 
-        :GoRun
-    endif
-endfunc
-
-function! <SID>BuildFile()
-    let ext = expand("%:e")
-    if(ext == "go") 
-        :GoBuild
-    endif
-endfunc
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
