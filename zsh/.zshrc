@@ -192,6 +192,11 @@ _gen_fzf_default_opts() {
 _gen_fzf_default_opts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# jq repl with fzf
+ijq() {
+    echo '' | fzf --print-query --preview "cat $* | jq {q}"
+}
+
 # Handy alias for reloading all tmux windows (which reloads zshrc everywhere)
 alias reload-tmux="tmux display -p '#S' | xargs -I{} sh -c \"tmux list-windows -t {} | cut -d: -f1 | xargs -P0 -I\[\] tmux respawn-pane -kt {}:\[\]\""
 
