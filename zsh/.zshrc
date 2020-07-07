@@ -194,7 +194,7 @@ _gen_fzf_default_opts
 
 # jq repl with fzf
 ijq() {
-    echo '' | fzf --print-query --preview "cat $* | jq {q}"
+    echo '' | fzf --print-query --preview "cat $* | jq -C {q}"
 }
 
 # Handy alias for reloading all tmux windows (which reloads zshrc everywhere)
