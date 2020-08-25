@@ -74,7 +74,7 @@ update_submodules: submodules
 	# coc.nvim should update from the release branch
 	cd vim/.vim/bundle/coc.nvim && git checkout release && git pull
 
-update_binaries: update_bat update_fd update_hyperfine, update_nvim update_src_cli
+update_binaries: update_bat update_fd update_hyperfine update_nvim update_src_cli
 
 update_bat: .PHONY
 	./sharkdp/update.sh bat
