@@ -158,6 +158,8 @@ if uname -r | grep -q 'Microsoft' ; then
 fi
 
 ssh-add -A  &> /dev/null
+# Linux cmd to start keychain
+eval `keychain -q --eval id_rsa`
 
 # FZF stuff
 # export FZF_DEFAULT_OPTS=$FZT_DEFAULT_OPS'
