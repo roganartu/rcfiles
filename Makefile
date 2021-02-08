@@ -14,15 +14,15 @@ venvs: vim_py3_venv vim_py2_venv
 vim_py3_venv: .PHONY
 	mkdir -p ~/.venvs
 	bash -c "source ~/.venvs/vim/bin/activate" || python3 -m virtualenv -p "`which python3.6`" ~/.venvs/vim
-	~/.venvs/vim/bin/pip install black
-	~/.venvs/vim/bin/pip install neovim
-	~/.venvs/vim/bin/pip install jedi
+	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager black
+	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager neovim
+	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager jedi
 
 vim_py2_venv: .PHONY
 	mkdir -p ~/.venvs
 	bash -c "source ~/.venvs/vim_py2/bin/activate" || python3 -m virtualenv -p "`which python2.7`" ~/.venvs/vim_py2
-	~/.venvs/vim_py2/bin/pip install neovim
-	~/.venvs/vim_py2/bin/pip install jedi
+	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager neovim
+	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager jedi
 
 tmux: .PHONY submodules
 	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
