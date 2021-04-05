@@ -148,3 +148,6 @@
 [submodule "vim/.vim/bundle/SimpylFold"]
 	path = vim/.vim/bundle/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
+[submodule "vim/.vim/bundle/vim-pythonsense"]
+	path = vim/.vim/bundle/vim-pythonsense
+	url = https://github.com/jeetsukumaran/vim-pythonsense.git
