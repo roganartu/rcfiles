@@ -157,9 +157,18 @@ if uname -r | grep -q 'Microsoft' ; then
   export SHELL=/usr/bin/zsh
 fi
 
-ssh-add -A  &> /dev/null
+# Run ssh-agent as a systemd unit, per:
+# https://stackoverflow.com/a/38980986
+if [ -z "$SSH_AUTH_SOCK" ] && [ -r "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+  export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+fi
 # Linux cmd to start keychain
-eval `keychain -q --eval id_rsa`
+# --noask prevents this from prompting until the key is first used.
+# --inherit any makes it respect SSH_AUTH_SOCK running in systemd, as set above.
+eval `keychain -q --eval id_rsa --noask --inherit any`
+
+# Don't fucking beep
+unsetopt beep
 
 # FZF stuff
 # export FZF_DEFAULT_OPTS=$FZT_DEFAULT_OPS'

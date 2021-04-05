@@ -56,7 +56,12 @@ set noswapfile
 
 " Better display for messages
 set cmdheight=2
+
+" Don't ring the bell or flash the window.
+set visualbell
+set t_vb=
 " }}}
+
 
 " Spaces & Tabs {{{
 set tabstop=4           " 4 space tab
