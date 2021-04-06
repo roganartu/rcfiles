@@ -188,7 +188,7 @@ set scrolloff=15
 
 " Spell checking {{{
 " Toggle the spell checker
-map <leader>ss :set spell!<cr>
+"map <leader>sp :set spell!<cr>
 
 " Underline bad spellings
 hi clear SpellBad
@@ -214,6 +214,15 @@ nnoremap <silent> <leader><CR> :let @/=""<CR>
 
 " TODO make this use fzf with rg for that sweet sweet preview pane
 nnoremap <leader>f :Rg 
+
+" Diagnostics
+nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+
+" Fuzzy-searchable list of symbols.
+nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
+
+" Rename symbol
+nmap <leader>rn <Plug>(coc-rename)
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
@@ -418,8 +427,6 @@ if !has('nvim')
   " n    - set name of viminfo file
   set viminfo='20,\"50,:20,/20,%,n~/.viminfo
 endif
-
-nnoremap <leader>s :mksession<CR>
 
 " Define what to save with :mksession
 " blank    - empty windows

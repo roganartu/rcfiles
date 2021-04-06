@@ -5,14 +5,12 @@
     "suggest.noselect": false,
     "suggest.timeout": 500,
 
-    "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootpatterns": ["go.mod"],
-            "filetypes": ["go"]
-        }
-    },
+    "languageserver": {},
 
     "python.pythonPath": "~/.venvs/vim/bin/python",
-    "python.venvPath": "~/.venvs"
+    "python.venvPath": "~/.venvs",
+
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "prettier.disableSuccessMessage": true
 }
