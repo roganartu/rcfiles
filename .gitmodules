@@ -151,3 +151,6 @@
 [submodule "vim/.vim/bundle/vim-pythonsense"]
 	path = vim/.vim/bundle/vim-pythonsense
 	url = https://github.com/jeetsukumaran/vim-pythonsense.git
+[submodule "vim/.vim/bundle/vim-javascript"]
+	path = vim/.vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
