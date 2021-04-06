@@ -19,7 +19,7 @@ if executable('rg')
   " Pass zero or one args to Files command (which are then passed to Fzf_dev). Support file path completion too.
   command! -nargs=? -complete=file Files call Fzf_dev(<q-args>)
 
-  nnoremap <silent> <leader>e :Files<CR>
+  " nnoremap <silent> <leader>e :Files<CR>
 
 endif
 

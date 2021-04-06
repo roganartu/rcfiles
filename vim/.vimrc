@@ -205,7 +205,7 @@ set spell spelllang=en_au
 nnoremap <leader>m :silent make\|redraw!\|cw<CR>
 nnoremap <leader>h :A<CR>
 nnoremap <leader>v :vsp $MYVIMRC<CR>
-nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>z :vsp ~/.zshrc<CR>
 nnoremap <leader>V :source $MYVIMRC<CR>
 nnoremap <leader>0 :call <SID>ToggleNumber()<CR>
 
@@ -220,6 +220,9 @@ nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
 
 " Fuzzy-searchable list of symbols.
 nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
+
+" File explorer
+:nnoremap <leader>e :CocCommand explorer<CR>
 
 " Rename symbol
 nmap <leader>rn <Plug>(coc-rename)
