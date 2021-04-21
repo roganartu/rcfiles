@@ -280,6 +280,10 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " anything until enter is pressed.
 set completeopt=menu,longest,menuone
 
+" Don't show the jedi completion window. It's overwriting splits for some dumb
+" reason, and I don't even use it anyway.
+autocmd FileType python setlocal completeopt-=preview
+
 " Auto-close the preview window when moving
 autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
