@@ -13,5 +13,14 @@
     "eslint.autoFixOnSave": true,
     "eslint.filetypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
     "prettier.disableSuccessMessage": true,
-    "pyright.completion.snippetSupport": false
+    "pyright.completion.snippetSupport": false,
+
+    "python.autoComplete.extraPaths": [
+        "~/src/sensu/python/sensu_sync",
+        "~/src/sensu/python/sensu_tools",
+        "~/src/sensu/python/sensu_client"
+    ],
+    // Tags are handled by gutentags
+    "python.workspaceSymbols.rebuildOnStart": false,
+    "python.workspaceSymbols.rebuildOnFileSave": false
 }

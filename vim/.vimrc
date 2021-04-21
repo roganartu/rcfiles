@@ -455,6 +455,9 @@ let g:airline_theme = 'bubblegum'
 
 " Enable airline tabs
 let g:airline#extensions#tabline#enabled = 1
+
+" Use highlighting cache
+let g:airline_highlighting_cache = 1
 " }}}
 
 " Ctrl-Space {{{
