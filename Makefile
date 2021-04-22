@@ -74,7 +74,7 @@ update_submodules: submodules
 	# coc.nvim should update from the release branch
 	cd vim/.vim/bundle/coc.nvim && git checkout release && git pull
 
-update_binaries: update_bat update_fd update_hyperfine update_nvim update_src_cli update_fzf
+update_binaries: update_bat update_fd update_hyperfine update_nvim update_src_cli update_fzf update_starship
 
 update_fzf: .PHONY
 	./fzf/update.sh fzf
@@ -87,6 +87,9 @@ update_fd: .PHONY
 
 update_hyperfine: .PHONY
 	./sharkdp/update.sh hyperfine
+
+update_starship: .PHONY
+	./starship/update.sh
 
 update_src_cli: .PHONY
 	curl -Lq https://sourcegraph.com/.api/src-cli/src_linux_amd64 -o ./sourcegraph/src
