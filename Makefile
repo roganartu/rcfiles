@@ -54,6 +54,9 @@ zsh: .PHONY submodules
 bash: .PHONY
 	ln -s -n `pwd`/bash/.bashrc ~/.bashrc
 
+starship: .PHONY
+	ln -s -n `pwd`/starship/starship.toml ~/.config/starship.toml
+
 fzf: .PHONY submodules
 	ln -s -n `pwd`/fzf/.fzf ~/.fzf
 	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
@@ -67,7 +70,7 @@ nvim: .PHONY submodules
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh bash fzf tmux nvim bin git
+install: submodules vim zsh bash starship fzf tmux nvim bin git
 
 update: clean install
 
@@ -105,6 +108,7 @@ clean: .PHONY
 		rm -f \
 			~/bin(@) \
 			~/.config/nvim(@) \
+			~/.config/starship.toml(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
 			~/.gitignore(@) \
