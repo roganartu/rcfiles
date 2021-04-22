@@ -293,11 +293,6 @@ if filereadable("/home/tl/.nvm/versions/node/v12.10.0/bin/node")
 endif
 
 
-" Simulate down when the completion menu opens, so something is always
-" selected.
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
