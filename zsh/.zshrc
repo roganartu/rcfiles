@@ -92,7 +92,7 @@ export ANSIBLE_NOCOWS=1
 export GOPATH=~/Code/go
 export PATH=$PATH:$GOPATH/bin
 
-export PATH=$PATH:~/bin
+export PATH=~/bin:$PATH
 
 if uname -r | grep -q 'Microsoft' ; then
   # vscode binary
