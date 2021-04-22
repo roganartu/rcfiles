@@ -51,6 +51,9 @@ zsh: .PHONY submodules
 	# Fishy autosuggestions
 	ln -s -n `pwd`/zsh/plugins/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 
+bash: .PHONY
+	ln -s -n `pwd`/bash/.bashrc ~/.bashrc
+
 fzf: .PHONY submodules
 	ln -s -n `pwd`/fzf/.fzf ~/.fzf
 	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
@@ -64,7 +67,7 @@ nvim: .PHONY submodules
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh fzf tmux nvim bin git
+install: submodules vim zsh bash fzf tmux nvim bin git
 
 update: clean install
 
@@ -106,6 +109,7 @@ clean: .PHONY
 			~/.vimrc(@) \
 			~/.gitignore(@) \
 			~/.zshrc(@) \
+			~/.bashrc(@) \
 			~/.zshenv(@) \
 			~/.oh-my-zsh(@) \
 			~/.zsh/functions/prompt_pure_setup(@) \
