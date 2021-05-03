@@ -36,20 +36,17 @@ git: .PHONY
 zsh: .PHONY submodules
 	ln -s -n `pwd`/zsh/.zshrc ~/.zshrc
 	ln -s -n `pwd`/zsh/.zshenv ~/.zshenv
-	ln -s -n `pwd`/zsh/.oh-my-zsh ~/.oh-my-zsh
 	
 	mkdir -p ~/.zsh
-	
-	# Pure theme
-	mkdir -p ~/.zsh/functions
-	ln -s -n `pwd`/zsh/submodules/pure/pure.zsh ~/.zsh/functions/prompt_pure_setup
-	ln -s -n `pwd`/zsh/submodules/pure/async.zsh ~/.zsh/functions/async
 	
 	# Syntax highlighting
 	ln -s -n `pwd`/zsh/plugins/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 	
 	# Fishy autosuggestions
 	ln -s -n `pwd`/zsh/plugins/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+	
+	# Extra autocomplete
+	ln -s -n `pwd`/zsh/plugins/zsh-completions ~/.zsh/zsh-completions
 
 bash: .PHONY
 	ln -s -n `pwd`/bash/.bashrc ~/.bashrc
@@ -120,6 +117,7 @@ clean: .PHONY
 			~/.zsh/functions/async(@) \
 			~/.zsh/zsh-syntax-highlighting(@) \
 			~/.zsh/zsh-autosuggestions(@) \
+			~/.zsh/zsh-completions(@) \
 			~/.fzf(@) \
 			~/.fzf.zsh(@) \
 			~/.tmux.conf(@) \
