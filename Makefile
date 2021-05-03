@@ -9,6 +9,9 @@ vim: .PHONY submodules vim_py3_venv vim_py2_venv
 	# ctrlspace stores it's cachefile here
 	mkdir -p ~/.cache/vim/ctrlspace
 
+emacs: .PHONY submodules
+	ln -s -n `pwd`/emacs/.emacs.d ~/.emacs.d
+
 venvs: vim_py3_venv vim_py2_venv
 
 vim_py3_venv: .PHONY
@@ -109,6 +112,7 @@ clean: .PHONY
 			~/bin(@) \
 			~/.config/nvim(@) \
 			~/.config/starship.toml(@) \
+			~/.emacs.d(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
 			~/.gitignore(@) \
