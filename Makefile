@@ -50,6 +50,9 @@ zsh: .PHONY submodules
 	
 	# Extra autocomplete
 	ln -s -n `pwd`/zsh/plugins/zsh-completions ~/.zsh/zsh-completions
+	
+	# systemd aliases
+	ln -s -n `pwd`/zsh/plugins/systemd ~/.zsh/systemd
 
 bash: .PHONY
 	ln -s -n `pwd`/bash/.bashrc ~/.bashrc
@@ -122,6 +125,7 @@ clean: .PHONY
 			~/.zsh/zsh-syntax-highlighting(@) \
 			~/.zsh/zsh-autosuggestions(@) \
 			~/.zsh/zsh-completions(@) \
+			~/.zsh/systemd(@) \
 			~/.fzf(@) \
 			~/.fzf.zsh(@) \
 			~/.tmux.conf(@) \

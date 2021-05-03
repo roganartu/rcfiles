@@ -167,6 +167,8 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Be the async you want to see
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+source ~/.zsh/systemd/aliases.zsh
+
 # Add zsh-completions to fpath
 fpath=(~/.zsh/zsh-completions/src $fpath)
 
