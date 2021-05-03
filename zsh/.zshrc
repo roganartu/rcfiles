@@ -167,6 +167,12 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Be the async you want to see
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
+# Add zsh-completions to fpath
+fpath=(~/.zsh/zsh-completions/src $fpath)
+
+# Load completions
+autoload -U compinit && compinit
+
 # Must be last so it can wrap all custom zle widgets
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
