@@ -73,7 +73,7 @@ nvim: .PHONY submodules
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh bash starship fzf tmux nvim bin git
+install: submodules vim zsh bash starship fzf tmux nvim bin git emacs
 
 update: clean install
 
