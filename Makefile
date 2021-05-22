@@ -70,10 +70,15 @@ nvim: .PHONY submodules
 	bash -c "`pwd`/neovim/nvim.appimage --version" || bash -c "cd `pwd`/neovim && \
 		./nvim.appimage --appimage-extract"
 
+pyenv: .PHONY submodules
+	ln -s -n `pwd`/pyenv ~/.pyenv
+	# Try to make the bash extension, it's ok if this fails it's just additive
+	-cd pyenv && src/configure && make -C src
+
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh bash starship fzf tmux nvim bin git emacs
+install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv
 
 update: clean install
 
@@ -115,6 +120,7 @@ clean: .PHONY
 			~/.emacs.d(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
+			~/.pyenv(@) \
 			~/.gitignore(@) \
 			~/.zshrc(@) \
 			~/.bashrc(@) \
