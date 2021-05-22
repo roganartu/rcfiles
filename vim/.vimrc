@@ -1,13 +1,188 @@
 " Tony Lykke
-" Borrows heavily from Douglas Black's .vimrc:
-"     https://github.com/dougblack/dotfiles/blob/master/.vimrc
-" Black is broken on work's vim, disable it temporarily until
-" I can be bothered adding neovim appimage to this repo
-" and running it instead of system vim:
-" https://github.com/psf/black/issues/394
-let g:pathogen_disabled = []
-call add(g:pathogen_disabled, 'black')
-execute pathogen#infect()
+
+" Setup vim-plug
+if has('nvim')
+  call plug#begin(stdpath('data') . '/plugged')
+else
+  call plug#begin('~/.vim/plugged')
+endif
+
+" nvim 0.5+ native lsp
+Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
+
+" Nice tagbar (F8)
+Plug 'majutsushi/tagbar'
+
+" Colour theme
+Plug 'sjl/badwolf'
+
+" <3 fzf
+Plug 'junegunn/fzf.vim'
+
+" Nicer comment toggling
+Plug 'preservim/nerdcommenter'
+
+" Use :Tab to get nicer alignment of things
+Plug 'godlygeek/tabular'
+
+" Better tabline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Kill buffers without closing splits
+Plug 'qpkorr/vim-bufkill'
+
+" Nice icons
+Plug 'ryanoasis/vim-devicons'
+
+" git status in the gutter
+Plug 'airblade/vim-gitgutter'
+
+" Automatically generate tags
+Plug 'ludovicchabant/vim-gutentags'
+
+" Nicer indentation visuals (cause Python is bae)
+Plug 'nathanaelkane/vim-indent-guides'
+
+" Some indentation helpers
+Plug 'michaeljsmith/vim-indent-object'
+
+" Reopen files in the last place they were open
+Plug 'farmergreg/vim-lastplace'
+
+" Undo via a tree with diffs
+Plug 'simnalamburt/vim-mundo'
+
+" Make tmux panes and vim splits behave nicely
+Plug 'christoomey/vim-tmux-navigator'
+
+" Telescope for nice fuzzy finding
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" The future of code editing, they say
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+" Use LSP server for better completions
+Plug 'nvim-lua/completion-nvim'
+" Completions from TreeSitter
+Plug 'nvim-treesitter/completion-treesitter'
+" Completions from open buffers
+Plug 'steelsojka/completion-buffers'
+
+" A prettier LSP display, with some useful commands
+Plug 'glepnir/lspsaga.nvim'
+
+" Initialize plugin system
+" Must be done before the lua stuff below.
+call plug#end()
+
+" Setup the nvim 0.5 language server
+if has('nvim')
+
+lua << EOF
+  -- config that activates keymaps and enables snippet support
+  local function make_config()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    return {
+      -- enable snippet support
+      capabilities = capabilities,
+      -- map buffer local keybindings when the language server attaches
+      on_attach = on_attach,
+    }
+  end
+
+  -- lsp-install
+  local function setup_servers()
+    require'lspinstall'.setup()
+
+    -- get all installed servers
+    local servers = require'lspinstall'.installed_servers()
+
+    for _, server in pairs(servers) do
+      local config = make_config()
+
+      -- language specific config
+      --if server == "sourcekit" then
+      --  config.filetypes = {"swift", "objective-c", "objective-cpp"}; -- we don't want c and cpp!
+      --end
+
+      require'lspconfig'[server].setup(config)
+    end
+  end
+
+  -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+  require'lspinstall'.post_install_hook = function ()
+    setup_servers() -- reload installed servers
+    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+  end
+
+  -- keymaps
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
+    -- Set some keybinds conditional on server capabilities
+    if client.resolved_capabilities.document_formatting then
+      buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    elseif client.resolved_capabilities.document_range_formatting then
+      buf_set_keymap("n", "<space>F", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    end
+
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+      vim.api.nvim_exec([[
+      augroup lsp_document_highlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+      ]], false)
+    end
+  end
+
+  setup_servers()
+
+  -- Setup lsp-saga
+  require'lspsaga'.init_lsp_saga()
+EOF
+
+  " Some LSP Saga keymaps
+  " LSP Saga keymaps
+  nnoremap <silent> gf <cmd>lua require('lspsaga.provider').lsp_finder()<CR>
+  nnoremap <silent><space>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+  nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+  nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+  nnoremap <silent><space>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+  nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+  " Toggle diagnostic on cursor.
+  " Should this be enabled by default instead of a toggle?
+  nnoremap <silent><space>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+
+  " Floating terminal
+  nnoremap <silent><space>t <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
+endif
 
 " Encoding {{{
 set encoding=utf-8
@@ -49,6 +224,17 @@ nnoremap <SPACE> <Nop>
 " Fast saving
 map <Leader>w :w<CR>
 " }}}
+
+" TreeSitter
+if has('nvim')
+lua <<EOF
+  require'nvim-treesitter.configs'.setup {
+    indent = {
+      enable = true
+    }
+  }
+EOF
+endif
 
 " Misc {{{
 set backspace=indent,eol,start
@@ -149,21 +335,6 @@ set foldnestmax=10      " max 10 depth
 set foldenable          " fold files by default on open
 set foldlevelstart=10   " start with fold level of 10 so most everything isn't autofolded
 
-" Enable Python folding
-let g:python_folding = 1
-
-" FastFold settings
-nmap zuz <Plug>(FastFoldUpdate)
-let g:fastfold_savehook = 1
-let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
-let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
-
-" Keep docstrings for folded things
-let b:SimpylFold_docstring_preview = 1
-let b:SimpylFold_fold_docstring = 0
-let g:SimpylFold_fold_docstring = 0
-" }}}
-
 " Line Shortcuts {{{
 " This approach has the benefit of not breaking
 " bulk line movement using the relative line numbers
@@ -213,19 +384,22 @@ nnoremap <leader>0 :call <SID>ToggleNumber()<CR>
 nnoremap <silent> <leader><CR> :let @/=""<CR>
 
 " TODO make this use fzf with rg for that sweet sweet preview pane
-nnoremap <leader>f :Rg 
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-" Diagnostics
-nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
-
-" Fuzzy-searchable list of symbols.
-nnoremap <silent> <leader>s :<C-u>CocList -I symbols<cr>
-
-" File explorer
-:nnoremap <leader>e :CocCommand explorer<CR>
-
-" Rename symbol
-nmap <leader>rn <Plug>(coc-rename)
+" Telescope config.
+" See https://github.com/nvim-telescope/telescope.nvim
+if has('nvim')
+lua <<EOF
+  require('telescope').setup{
+    defaults = {
+      color_devicons = true,
+    }
+  }
+EOF
+endif
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
@@ -278,61 +452,44 @@ let g:gutentags_file_list_command = 'rg --files --hidden --follow --glob "!.git/
 " Completion tweaks {{{
 " Show completion menu even when there's only one and don't insert
 " anything until enter is pressed.
-set completeopt=menu,longest,menuone
+set completeopt=menuone,noinsert,noselect
 
-" Don't show the jedi completion window. It's overwriting splits for some dumb
-" reason, and I don't even use it anyway.
-autocmd FileType python setlocal completeopt-=preview
+" Register completion sources
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['lsp', 'buffers']}
+\]
+
+if has('nvim')
+  " Enable completion in all buffers, regardless of LSP presence
+  autocmd BufEnter * lua require'completion'.on_attach()
+endif
+
+" Auto change sources when the first one doesn't have any matches
+let g:completion_auto_change_source = 1
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
+" Avoid showing message extra message when using completion
+set shortmess+=c
+
+" Don't show function signatures, I don't find them useful
+" let g:completion_enable_auto_signature = 0
+
+" Use smart case matching
+let g:completion_matching_smart_case = 1
 
 " Auto-close the preview window when moving
 autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
-if filereadable("/home/tl/.nvm/versions/node/v12.10.0/bin/node")
-  let g:coc_node_path = "/home/tl/.nvm/versions/node/v12.10.0/bin/node"
-endif
-
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Expand snippets when appropriate
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-" Tab to move to next item in snippet
-let g:coc_snippet_next = '<tab>'
-
-" gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Install some extensions.
-" coc.nvim will automatically install these on start if they are missing.
-let g:coc_global_extensions = "coc-json,coc-rls,coc-rust-analyzer,coc-json"
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Close the window when completion is done
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-" }}}
 
 " JSONC comment formatting {{{
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -345,12 +502,6 @@ let g:toggle_list_no_mappings = 1
 " Map them manually
 nmap <script> <silent> <leader>l :call ToggleLocationList()<CR>
 nmap <script> <silent> <leader>ll :call ToggleQuickfixList()<CR>
-" }}}
-
-" Syntastic {{{
-let g:syntastic_python_flake8_args='--ignore=E501'
-let g:syntastic_ignore_files = ['.java$']
-let g:syntastic_python_python_exec = 'python3'
 " }}}
 
 " NERDTree {{{
@@ -405,11 +556,28 @@ augroup configgroup
     autocmd BufEnter *.go setlocal noexpandtab
     autocmd BufEnter *.avsc setlocal ft=json
 augroup END
+
+" Automatically close floaterm after it exits.
+" The *:$SHELL means it only closes terminals, not other subcommands.
+" Adapted from, with ok condition removed: https://vi.stackexchange.com/a/17388
+func! s:afterTermClose() abort
+  " TODO is there a way to detect whether it's a floatterm?
+  bdelete!
+  bdelete!
+endfunc
+
+augroup floatterm
+  autocmd!
+  " The line '[Process exited ?]' is appended to the terminal buffer after the
+  " `TermClose` event. So we use a timer to wait a few milliseconds to read the
+  " exit status. Setting the timer to 0 or 1 ms is not sufficient; 20 ms seems
+  " to work for me.
+  autocmd TermClose *:$SHELL call timer_start(20, { -> s:afterTermClose() })
+augroup END
 " }}}
 
 " Testing {{{
 let test#strategy = 'neovim'
-let test#python#runner = 'nose'
 " }}}
 
 " Backups {{{
@@ -457,19 +625,6 @@ let g:airline_highlighting_cache = 1
 
 " Ctrl-Space {{{
 set showtabline=0
-
-" Neovim requires this
-if has('nvim')
-  let g:CtrlSpaceDefaultMappingKey = "<C-space> "
-endif
-
-" Arrows to navigate the pop-up please
-let g:CtrlSpaceUseArrowsInTerm = 1
-
-" Save workspaces automatically
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
 
 " Disable airline preview to avoid status bar conflicts
 let g:airline_exclude_preview = 1
