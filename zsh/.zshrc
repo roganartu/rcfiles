@@ -22,6 +22,8 @@ zstyle :compinstall filename $HOME'/.zshrc'
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+plugins=(poetry)
+
 # Don't background processes because nice doesn't work in WSL
 if uname -r | grep -q 'Microsoft' ; then
   unsetopt BG_NICE

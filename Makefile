@@ -40,7 +40,7 @@ zsh: .PHONY submodules
 	ln -s -n `pwd`/zsh/.zshrc ~/.zshrc
 	ln -s -n `pwd`/zsh/.zshenv ~/.zshenv
 	
-	mkdir -p ~/.zsh
+	mkdir -p ~/.zsh/plugins
 	
 	# Syntax highlighting
 	ln -s -n `pwd`/zsh/plugins/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
@@ -53,6 +53,9 @@ zsh: .PHONY submodules
 	
 	# systemd aliases
 	ln -s -n `pwd`/zsh/plugins/systemd ~/.zsh/systemd
+	
+	# poetry completions
+	ln -s -n `pwd`/zsh/plugins/poetry ~/.zsh/plugins/poetry
 
 bash: .PHONY
 	ln -s -n `pwd`/bash/.bashrc ~/.bashrc
@@ -72,8 +75,11 @@ nvim: .PHONY submodules
 
 pyenv: .PHONY submodules
 	ln -s -n `pwd`/pyenv ~/.pyenv
-	# Try to make the bash extension, it's ok if this fails it's just additive
+	@# Try to make the bash extension, it's ok if this fails it's just additive
 	-cd pyenv && src/configure && make -C src
+	@# Install pyenv-pyright
+	[ -d "pyenv/plugins/pyenv-pyright" ] || git clone https://github.com/alefpereira/pyenv-pyright.git pyenv/plugins/pyenv-pyright
+	[ -d "pyenv/plugins/pyenv-virtualenv" ] || git clone https://github.com/pyenv/pyenv-virtualenv.git pyenv/plugins/pyenv-virtualenv
 
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
@@ -132,6 +138,7 @@ clean: .PHONY
 			~/.zsh/zsh-autosuggestions(@) \
 			~/.zsh/zsh-completions(@) \
 			~/.zsh/systemd(@) \
+			~/.zsh/poetry(@) \
 			~/.fzf(@) \
 			~/.fzf.zsh(@) \
 			~/.tmux.conf(@) \
