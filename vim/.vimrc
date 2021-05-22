@@ -522,6 +522,9 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDSpaceDelims = 1
 let g:NERDToggleCheckAllLines = 1
+" Don't use default mappings, the only commenting I need is clever Ctrl+/ that
+" we map below.
+let g:NERDCreateDefaultMappings = 0
 " For whatever reason, <C-_> is actually Ctrl+/.
 " Nice, intuitive comment toggle keymap.
 nmap <C-_>   <Plug>NERDCommenterToggle
