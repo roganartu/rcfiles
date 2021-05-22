@@ -43,6 +43,8 @@ export KEYTIMEOUT=1
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+# Don't modify the prompt when we are in a venv, starship already does this for us
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 if command -v pyenv 1>/dev/null 2>&1; then
   # Only init pyenv if we're not already in a venv
   if [[ -z "$VIRTUAL_ENV" ]]; then
