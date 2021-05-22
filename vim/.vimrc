@@ -178,7 +178,7 @@ EOF
   nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
   " Toggle diagnostic on cursor.
   " Should this be enabled by default instead of a toggle?
-  nnoremap <silent><space>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+  nnoremap <silent><space>e <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
 
   " Floating terminal
   nnoremap <silent><space>t <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
