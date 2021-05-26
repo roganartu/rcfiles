@@ -14,8 +14,9 @@ Plug 'kabouzeid/nvim-lspinstall'
 " Nice tagbar (F8)
 Plug 'majutsushi/tagbar'
 
-" Colour theme
+" Colour themes
 Plug 'sjl/badwolf'
+Plug 'arcticicestudio/nord-vim'
 
 " <3 fzf
 Plug 'junegunn/fzf.vim'
@@ -74,6 +75,9 @@ Plug 'steelsojka/completion-buffers'
 
 " A prettier LSP display, with some useful commands
 Plug 'glepnir/lspsaga.nvim'
+
+" Native LSP support for colour themes in error messages
+Plug 'folke/lsp-colors.nvim'
 
 " Initialize plugin system
 " Must be done before the lua stuff below.
@@ -209,7 +213,11 @@ endif
 " Colours {{{
 syntax enable           " enable syntax processing
 set t_Co=256
-colorscheme badwolf
+" colorscheme badwolf
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold_vertical_split_line = 1
+let g:nord_italic_comments = 1
 set termguicolors
 " }}}
 
@@ -312,7 +320,8 @@ set wrap linebreak
 
 " Add a light-grey column at 88 (for Python) and 120 (for anything else)
 set colorcolumn=88,120
-highlight ColorColumn ctermbg=0 guibg=deeppink4
+" highlight ColorColumn ctermbg=0 guibg=deeppink4
+highlight ColorColumn ctermbg=0 guibg=#3b4252
 " }}}
 
 " Searching {{{
@@ -617,7 +626,8 @@ set sessionoptions=blank,buffers,curdir,folds,help,options,winsize,tabpages
 " Always show the status line
 set laststatus=2
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'bubblegum'
+" let g:airline_theme = 'bubblegum'
+let g:airline_theme = 'nord'
 
 " Enable airline tabs
 let g:airline#extensions#tabline#enabled = 1

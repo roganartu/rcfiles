@@ -11,3 +11,6 @@ CS_SESSION
 
 # coc.nvim workspace settings files
 *.vim
+
+# pyright config for vim venv
+pyrightconfig.json
