@@ -79,6 +79,9 @@ Plug 'glepnir/lspsaga.nvim'
 " Native LSP support for colour themes in error messages
 Plug 'folke/lsp-colors.nvim'
 
+" Show hex colours in-line
+Plug 'ap/vim-css-color'
+
 " Initialize plugin system
 " Must be done before the lua stuff below.
 call plug#end()
