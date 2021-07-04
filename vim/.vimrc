@@ -68,8 +68,13 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Use LSP server for better completions
 Plug 'nvim-lua/completion-nvim'
+" Extensions to built-in LSP, for example, providing type inlay hints
+Plug 'nvim-lua/lsp_extensions.nvim'
 " Completions from TreeSitter
-Plug 'nvim-treesitter/completion-treesitter'
+Plug 'nvim-treesitter/completion-treesitter', {'do': ':TSUpdate'}
+" Use completion-nvim for more complex completions. This requires explicit
+" on_attach
+Plug 'nvim-lua/completion-nvim'
 " Completions from open buffers
 Plug 'steelsojka/completion-buffers'
 
@@ -133,6 +138,18 @@ lua << EOF
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Attach completion-nvim
+    require'completion'.on_attach(client)
+
+    -- Enable diagnostics
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        update_in_insert = true,
+      }
+    )
 
     -- Mappings.
     local opts = { noremap=true, silent=true }
@@ -729,14 +746,6 @@ let g:gutentags_ctags_executable_rust = $HOME.'/.vim/shims/rusttags.sh'
 " }}}
 
 " Rust {{{
-let g:racer_cmd = $HOME."/.cargo/bin/racer"
-
-" Include full function def, args, and return type in completions
-let g:racer_experimental_completer = 1
-
-" Insert parens when completing functions and other things that need them
-let g:racer_insert_paren = 1
-
 " 4 spaces please
 autocmd FileType rust setlocal shiftwidth=4 tabstop=4
 autocmd FileType rust setlocal expandtab
