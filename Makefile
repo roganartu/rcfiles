@@ -94,7 +94,7 @@ update_submodules: submodules
 	# coc.nvim should update from the release branch
 	cd vim/.vim/bundle/coc.nvim && git checkout release && git pull
 
-update_binaries: update_bat update_fd update_hyperfine update_nvim update_src_cli update_fzf update_starship
+update_binaries: update_bat update_fd update_hyperfine update_nvim update_src_cli update_fzf update_starship update_rust_analyzer
 
 update_fzf: .PHONY
 	./fzf/update.sh fzf
@@ -116,6 +116,9 @@ update_src_cli: .PHONY
 
 update_nvim: .PHONY
 	./neovim/update.sh neovim
+
+update_rust_analyzer: .PHONY
+	./rust-analyzer/update.sh rust-analyzer
 
 clean: .PHONY
 	zsh -c 'setopt null_glob; \
