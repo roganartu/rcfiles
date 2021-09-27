@@ -188,3 +188,6 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use starship.rs
 eval "$(starship init zsh)"
+
+autoload -Uz compinit
+fpath+=~/.zfunc
