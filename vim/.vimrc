@@ -261,7 +261,7 @@ lua <<EOF
       enable = true
     },
     highlight = {
-      enable = true
+      enable = false
     }
   }
 EOF
