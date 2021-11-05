@@ -35,7 +35,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'qpkorr/vim-bufkill'
 
 " Nice icons
-Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " git status in the gutter
 Plug 'airblade/vim-gitgutter'
@@ -62,6 +62,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+" Use fzf for telescope sorting
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Use Frecency algorithm for sorting results in Telescope
+Plug 'nvim-telescope/telescope-frecency.nvim'
+Plug 'tami5/sqlite.lua'
+" A popup cheatsheet in Telescope
+Plug 'sudormrfbin/cheatsheet.nvim'
 
 " The future of code editing, they say
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -86,6 +93,9 @@ Plug 'folke/lsp-colors.nvim'
 
 " Show hex colours in-line
 Plug 'ap/vim-css-color'
+
+" Make the nvim window transparent
+Plug 'xiyaowong/nvim-transparent'
 
 " Initialize plugin system
 " Must be done before the lua stuff below.
@@ -190,6 +200,16 @@ lua << EOF
 
   -- Setup lsp-saga
   require'lspsaga'.init_lsp_saga()
+
+  -- Devicons
+  require'nvim-web-devicons'.setup {
+    default = true;
+  }
+
+  -- Transparent background
+  require("transparent").setup({
+    enable = true,
+  })
 EOF
 
   " Some LSP Saga keymaps
@@ -413,20 +433,38 @@ nnoremap <leader>0 :call <SID>ToggleNumber()<CR>
 nnoremap <silent> <leader><CR> :let @/=""<CR>
 
 " TODO make this use fzf with rg for that sweet sweet preview pane
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files(require('telescope').extensions.frecency.frecency())<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep(require('telescope').extensions.frecency.frecency())<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>?  <cmd>lua require('telescope').extensions.cheatsheet.cheatsheet()<cr>
 
 " Telescope config.
 " See https://github.com/nvim-telescope/telescope.nvim
 if has('nvim')
 lua <<EOF
+  -- Optionally load frecency workspaces
+  local ok, frecency_workspaces = pcall(dofile, '/home/tl/.frecency.lua')
+  if not ok then
+    frecency_workspaces = {}
+  end
   require('telescope').setup{
     defaults = {
       color_devicons = true,
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+      },
+      frecency = {
+        workspaces = frecency_workspaces,
+      }
     }
   }
+  require('telescope').load_extension('fzf')
+  require('telescope').load_extension('frecency')
 EOF
 endif
 
@@ -809,4 +847,3 @@ endfunc
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
-
