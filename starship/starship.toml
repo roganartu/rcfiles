@@ -1,2 +1,7 @@
+command_timeout = 100
+
 [character]
 error_symbol = "[✗❯](bold red)"
+
+[cmd_duration]
+min_time = 0
