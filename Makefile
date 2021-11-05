@@ -142,6 +142,7 @@ clean: .PHONY
 			~/.zsh/zsh-completions(@) \
 			~/.zsh/systemd(@) \
 			~/.zsh/poetry(@) \
+			~/.zsh/plugins/poetry(@) \
 			~/.fzf(@) \
 			~/.fzf.zsh(@) \
 			~/.tmux.conf(@) \
