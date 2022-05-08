@@ -5,7 +5,7 @@ _target=$1
 
 echo "Updating ${_target} from GitHub releases"
 
-_url="$(curl --silent "https://api.github.com/repos/rust-analyzer/${_target}/releases/latest" \
+_url="$(curl --silent "https://api.github.com/repos/rust-lang/${_target}/releases/latest" \
   | jq -r '.assets[] | select(.name | endswith('\"'x86_64-unknown-linux-gnu.gz'\"')).browser_download_url')"
 
 if [ -z "${_url}" ]; then \
