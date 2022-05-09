@@ -16,16 +16,13 @@ venvs: vim_py3_venv vim_py2_venv
 
 vim_py3_venv: .PHONY
 	mkdir -p ~/.venvs
-	bash -c "source ~/.venvs/vim/bin/activate" || python3 -m virtualenv -p "`which python3.6`" ~/.venvs/vim
-	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager black
-	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager neovim
-	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager jedi
+	bash -c "source ~/.venvs/vim/bin/activate" || python3.10 -m venv ~/.venvs/vim
+	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager pip black neovim jedi
 
 vim_py2_venv: .PHONY
 	mkdir -p ~/.venvs
 	bash -c "source ~/.venvs/vim_py2/bin/activate" || python3 -m virtualenv -p "`which python2.7`" ~/.venvs/vim_py2
-	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager neovim
-	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager jedi
+	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager pip future neovim jedi
 
 tmux: .PHONY submodules
 	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
@@ -68,7 +65,7 @@ fzf: .PHONY submodules
 	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
 
 nvim: .PHONY submodules
-	ln -s -n `pwd`/neovim ~/.config/nvim
+	ln -s -n `pwd`/neovim/config ~/.config/nvim
 	# Windows doesn't support FUSE yet, so we have to extract the appimage
 	bash -c "`pwd`/neovim/nvim.appimage --version" || bash -c "cd `pwd`/neovim && \
 		./nvim.appimage --appimage-extract"
