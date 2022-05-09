@@ -66,6 +66,7 @@ fzf: .PHONY submodules
 
 nvim: .PHONY submodules
 	ln -s -n `pwd`/neovim/config ~/.config/nvim
+	ln -snf ../../custom_config neovim/config/lua/custom
 	# Windows doesn't support FUSE yet, so we have to extract the appimage
 	bash -c "`pwd`/neovim/nvim.appimage --version" || bash -c "cd `pwd`/neovim && \
 		./nvim.appimage --appimage-extract"
