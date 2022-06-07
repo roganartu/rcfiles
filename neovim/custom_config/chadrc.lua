@@ -1,5 +1,3 @@
--- Just an example, supposed to be placed in /lua/custom/
-
 local M = {}
 local pluginConfs = require "custom.plugins.configs"
 local userPlugins = require "custom.plugins"
@@ -8,11 +6,30 @@ local userPlugins = require "custom.plugins"
 
 M.plugins = {
 
-  options = {
-    lspconfig = {
-      setup_lspconf = "custom.plugins.lspconfig",
-    },
+  lspconfig = {
+    servers = {
+      "ansiblels",
+      "bashls",
+      "ccls",
+      "clangd",
+      "cmake",
+      "cssls",
+      "dockerls",
+      "emmet_ls",
+      "gopls",
+      "html",
+      "jsonls",
+      "pyright",
+      "rust_analyzer",
+      "salt_ls",
+      "sqls",
+      "tailwindcss",
+      "tsserver" ,
+      "yamlls" ,
+    }
+  },
 
+  options = {
     statusline = {
       separator_style = "round",
     },
@@ -30,15 +47,6 @@ M.plugins = {
   user = userPlugins,
 }
 
-M.mappings = {
-  misc = function()
-    require("custom.mappings")
-  end,
-
-  ["neovim/nvim-lspconfig"] = function()
-    local map = require("core.utils").map
-    map("n", "<leader>q", ":Bdelete<CR>", { noremap = true, silent = true})
-  end,
-}
+M.mappings = require("custom.mappings")
 
 return M

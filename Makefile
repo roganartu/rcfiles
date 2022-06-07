@@ -72,7 +72,7 @@ nvim: .PHONY submodules
 		./nvim.appimage --appimage-extract"
 
 pyenv: .PHONY submodules
-	ln -s -n `pwd`/pyenv ~/.pyenv
+	ln -sf -n `pwd`/pyenv ~/.pyenv
 	@# Try to make the bash extension, it's ok if this fails it's just additive
 	-cd pyenv && src/configure && make -C src
 	@# Install pyenv-pyright
@@ -127,7 +127,6 @@ clean: .PHONY
 			~/.emacs.d(@) \
 			~/.vim(@) \
 			~/.vimrc(@) \
-			~/.pyenv(@) \
 			~/.gitignore(@) \
 			~/.zshrc(@) \
 			~/.bashrc(@) \

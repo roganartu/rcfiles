@@ -1,31 +1,41 @@
 -- MAPPINGS
-local map = require("core.utils").map
+local M = {}
 
-map("n", "<leader>cc", ":Telescope <CR>")
+M.custom = {
 
--- Fast saving
-map("n", "<Leader>w", ":w <CR>")
+  n = {
+    -- Fast saving
+    ["<Leader>w"] = {":w <CR>", "Write"},
 
--- Abandon a buffer without closing the window/split
-map("n", "<leader>q", ":Bdelete<CR>", { noremap = true, silent = true})
+    -- Abandon a buffer without closing the window/split
+    -- This doesn't work atm.
+    ["<leader>q"] = {":Bdelete<CR>", "Close buffer without closing split", opts = { noremap = true, silent = true}},
 
--- Clear search highlighting
-map("n", "<leader><CR>", ':let @/=""<CR>', { noremap = true, silent = true})
+    -- Clear search highlighting
+    ["<leader><CR>"] = {':let @/=""<CR>', "Clear search highlighting", opts = { noremap = true, silent = true}},
+  },
+
+  v = {
+    -- Allow shifting lines in visual mode without deselecting
+    ["<"] = {"<gv", "Shift left", opts = { noremap = true }},
+    [">"] = {">gv", "Shift right", opts = { noremap = true }},
+
+    -- Yank into a different buffer
+    ["<leader>y"] = {'"+y', "Yank into a separate buffer", opts = { noremap = true }},
+    ["<leader>Y"] = {'"+Y', "Yank into a separate buffer", opts =  { noremap = true }},
+    ["<leader>p"] = {'"+p', "Paste from a separate buffer", opts = { noremap = true }},
+    ["<leader>P"] = {'"+P', "Paste from a separate buffer", opts = { noremap = true }},
+  },
+}
 
 -- Telescope things
-map("n", "<leader>fg", "<cmd> :Telescope live_grep <CR>")
-map("n", "<C-p>", "<cmd> :Telescope find_files <CR>")
+M.telescope = {
+  n = {
+    ["<leader>cc"] = {":Telescope <CR>", "Open Telescope"},
 
--- Allow shifting lines in visual mode without deselecting
-map("v", "<", "<gv", { noremap = true })
-map("v", ">", ">gv", { noremap = true })
+    ["<leader>fg"] = {"<cmd> :Telescope live_grep <CR>", "Live grep"},
+    ["<C-p>"] = {"<cmd> :Telescope find_files <CR>", "File finder"},
+  }
+}
 
--- Yank into a different buffer
-map("v", "<leader>y", '"+y', { noremap = true })
-map("v", "<leader>Y", '"+Y', { noremap = true })
-map("v", "<leader>p", '"+p', { noremap = true })
-map("v", "<leader>P", '"+P', { noremap = true })
-map("n", "<leader>y", '"+y', { noremap = true })
-map("n", "<leader>Y", '"+Y', { noremap = true })
-map("n", "<leader>p", '"+p', { noremap = true })
-map("n", "<leader>P", '"+P', { noremap = true })
+return M
