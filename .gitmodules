@@ -37,3 +37,6 @@
 [submodule "pyenv"]
 	path = pyenv
 	url = https://github.com/pyenv/pyenv.git
+[submodule "neovim/config"]
+	path = neovim/config
+	url = https://github.com/NvChad/NvChad
