@@ -191,3 +191,5 @@ eval "$(starship init zsh)"
 
 autoload -Uz compinit
 fpath+=~/.zfunc
+
+source /home/tl/.config/broot/launcher/bash/br
