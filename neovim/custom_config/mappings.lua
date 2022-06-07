@@ -9,7 +9,12 @@ M.custom = {
 
     -- Abandon a buffer without closing the window/split
     -- This doesn't work atm.
-    ["<leader>q"] = {":Bdelete<CR>", "Close buffer without closing split", opts = { noremap = true, silent = true}},
+    ["<leader>q"] = {
+       function()
+          require("core.utils").close_buffer()
+       end,
+       "   close buffer",
+    },
 
     -- Clear search highlighting
     ["<leader><CR>"] = {':let @/=""<CR>', "Clear search highlighting", opts = { noremap = true, silent = true}},
