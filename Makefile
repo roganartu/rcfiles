@@ -77,7 +77,10 @@ pyenv: .PHONY submodules
 bin: .PHONY
 	ln -s -n `pwd`/bin ~/bin
 
-install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv
+kitty: .PHONY
+	ln -s -n `pwd`/kitty/config ~/.config/kitty
+
+install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv kitty
 
 update: clean install
 
@@ -123,6 +126,7 @@ clean: .PHONY
 			~/.vim(@) \
 			~/.vimrc(@) \
 			~/.gitignore(@) \
+			~/.config/kitty(@) \
 			~/.zshrc(@) \
 			~/.bashrc(@) \
 			~/.zshenv(@) \

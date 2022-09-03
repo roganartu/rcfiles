@@ -40,3 +40,6 @@
 [submodule "neovim/config"]
 	path = neovim/config
 	url = https://github.com/NvChad/NvChad
+[submodule "kitty/kitty-themes"]
+	path = kitty/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git
