@@ -1,7 +1,7 @@
 submodules: .PHONY
 	git submodule update --init --recursive
 
-vim: .PHONY submodules vim_py3_venv vim_py2_venv
+vim: .PHONY submodules vim_py3_venv
 	ln -s -n `pwd`/vim/.vim ~/.vim
 	ln -s -n `pwd`/vim/.vimrc ~/.vimrc
 	# Necessary for mundo to work
@@ -12,17 +12,12 @@ vim: .PHONY submodules vim_py3_venv vim_py2_venv
 emacs: .PHONY submodules
 	ln -s -n `pwd`/emacs/.emacs.d ~/.emacs.d
 
-venvs: vim_py3_venv vim_py2_venv
+venvs: vim_py3_venv
 
 vim_py3_venv: .PHONY
 	mkdir -p ~/.venvs
 	bash -c "source ~/.venvs/vim/bin/activate" || python3.10 -m venv ~/.venvs/vim
 	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager pip black neovim jedi
-
-vim_py2_venv: .PHONY
-	mkdir -p ~/.venvs
-	bash -c "source ~/.venvs/vim_py2/bin/activate" || python3 -m virtualenv -p "`which python2.7`" ~/.venvs/vim_py2
-	~/.venvs/vim_py2/bin/pip install --upgrade --upgrade-strategy eager pip future neovim jedi
 
 tmux: .PHONY submodules
 	ln -s -n `pwd`/tmux/.tmux.conf ~/.tmux.conf
