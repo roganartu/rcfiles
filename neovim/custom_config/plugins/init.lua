@@ -4,4 +4,6 @@ return {
   ["xiyaowong/nvim-transparent"] = {
     enable = true,
   },
+
+  ['folke/which-key.nvim'] = { disable = false  },
 }
