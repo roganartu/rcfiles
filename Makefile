@@ -80,6 +80,9 @@ bin: .PHONY
 kitty: .PHONY
 	ln -s -n `pwd`/kitty/config ~/.config/kitty
 
+i3: .PHONY
+	ln -s -n `pwd`/i3/config ~/.config/i3
+
 install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv kitty
 
 update: clean install
@@ -127,6 +130,7 @@ clean: .PHONY
 			~/.vimrc(@) \
 			~/.gitignore(@) \
 			~/.config/kitty(@) \
+			~/.config/i3(@) \
 			~/.zshrc(@) \
 			~/.bashrc(@) \
 			~/.zshenv(@) \

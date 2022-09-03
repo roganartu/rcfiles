@@ -1,0 +1,303 @@
+##### i3-config / RESLOVED  #######################
+
+##### GENERAL ##################################### 
+
+set $mod Mod4
+set $alt Mod1
+
+font pango:Hack Nerd Font Mono 9
+
+# APP VARIABLES
+set $browser	firefox
+set $music  	spotify
+set $term   	kitty
+
+# DIR VARIABLES
+set $bin ~/bin
+
+# RESIZE VARIABLES
+set $center move position center
+
+# FLOATING
+floating_modifier $mod
+
+set $thick 16
+border_radius 4
+
+# DEFAULT BORDER
+for_window [class="^.*"] border pixel 1
+for_window [title="^.*"] border pixel 1
+
+# FLOATING APPLICATIONS
+for_window [class="Orca"] floating enable
+for_window [class="ffplay"] floating enable
+for_window [class="feh"] floating enable
+for_window [class="mupen64plus"] floating enable
+for_window [class="dolphin-emu"] floating enable
+
+# GAP VARIABLES
+set $inner 16 
+set $outer 0
+
+# SET GAPS
+gaps inner $inner
+gaps outer $outer
+
+# TOGGLE GAPS
+bindsym $mod+g exec compton; gaps inner all set $inner; gaps outer all set $outer
+bindsym $mod+Ctrl+g exec compton; gaps inner all set 0; gaps outer all set 0
+
+# TERMINAL BINDS
+bindsym $mod+Return exec $term -e tmux
+bindsym $mod+Shift+Return exec $term -e tmux new-session -A -s main
+bindsym $mod+Ctrl+Return exec $term
+bindsym $mod+Shift+Ctrl+Return exec xterm -class blank
+
+# SCRATCHPAD
+bindsym $mod+BackSpace scratchpad show
+bindsym $mod+Shift+BackSpace floating enable, move position $inner px $inner px, move scratchpad
+bindsym $mod+Ctrl+BackSpace exec $term -e tmux new-session -A -s scratch 
+
+# KILL
+bindsym $mod+x      kill
+bindsym $mod+Ctrl+x exec rofi-exit
+
+# RELOAD 
+bindsym $mod+Ctrl+c reload
+# RESTART
+bindsym $mod+Ctrl+r restart
+
+bindsym $mod+w layout toggle split
+bindsym $mod+Ctrl+w layout stacked
+bindsym $mod+Shift+w layout tabbed
+title_align center
+
+##### MOVEMENT ####################################
+
+# FOCUS
+bindsym $alt+h focus left
+bindsym $alt+j focus down
+bindsym $alt+k focus up
+bindsym $alt+l focus right
+
+bindsym $alt+Left focus left
+bindsym $alt+Down focus down
+bindsym $alt+Up focus up
+bindsym $alt+Right focus right
+
+# MOVE
+bindsym $alt+Shift+h move left
+bindsym $alt+Shift+j move down
+bindsym $alt+Shift+k move up
+bindsym $alt+Shift+l move right
+
+bindsym $alt+Shift+Left move left
+bindsym $alt+Shift+Down move down
+bindsym $alt+Shift+Up move up
+bindsym $alt+Shift+Right move right
+
+# RESIZE
+bindsym $mod+Ctrl+h          resize shrink width  10px or 10 ppt
+bindsym $mod+Ctrl+j          resize shrink height 10px or 10 ppt
+bindsym $mod+Ctrl+k          resize grow height   10px or 10 ppt
+bindsym $mod+Ctrl+l          resize grow width    10px or 10 ppt
+
+bindsym $mod+Ctrl+Left       resize shrink width  10px or 10 ppt
+bindsym $mod+Ctrl+Down       resize shrink height 10px or 10 ppt
+bindsym $mod+Ctrl+Up         resize grow height   10px or 10 ppt
+bindsym $mod+Ctrl+Right      resize grow width    10px or 10 ppt
+
+bindsym $mod+Shift+Ctrl+h     resize shrink width  1px or 1 ppt
+bindsym $mod+Shift+Ctrl+j     resize shrink height 1px or 1 ppt
+bindsym $mod+Shift+Ctrl+k     resize grow height   1px or 1 ppt
+bindsym $mod+Shift+Ctrl+l     resize grow width    1px or 1 ppt
+
+bindsym $mod+Shift+Ctrl+Left  resize shrink width  1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Down  resize shrink height 1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Up    resize grow height   1px or 1 ppt
+bindsym $mod+Shift+Ctrl+Right resize grow width    1px or 1 ppt
+
+# VERTICAL SPLIT
+bindsym $mod+| split v
+
+# HORIZONTAL SPLIT
+bindsym $mod+- split h
+
+# FULLSCREEN
+bindsym $mod+f fullscreen toggle
+
+# TOGGLE FLOATING
+bindsym $mod+Enter floating toggle; $center
+
+# MODE TOGGLE
+bindsym $mod+Shift+space border pixel 5
+#bindsym $mod+Shift+space focus mode_toggle
+
+# PAPER MODE
+bindsym $mod+Ctrl+space floating toggle; resize set 700px 975px; $center
+
+# CENTER FLOATING
+bindsym $mod+c $center
+
+##### WORKSPACES ##################################
+
+# WORKSPACES
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+#set $ws4 "4"
+#set $ws5 "5"
+#set $ws6 "6"
+#set $ws7 "7"
+#set $ws8 "8"
+#set $ws9 "9"
+#set $ws10 "10"
+
+# SWITCH TO WORKSPACE
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+#bindsym $mod+4 workspace $ws4
+#bindsym $mod+5 workspace $ws5
+#bindsym $mod+6 workspace $ws6
+#bindsym $mod+7 workspace $ws7
+#bindsym $mod+8 workspace $ws8
+#bindsym $mod+9 workspace $ws9
+#bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Mod2+KP_1 workspace $ws1
+bindsym $mod+Mod2+KP_2 workspace $ws2
+bindsym $mod+Mod2+KP_3 workspace $ws3
+#bindsym $mod+Mod2+KP_4 workspace $ws4
+#bindsym $mod+Mod2+KP_5 workspace $ws5
+#bindsym $mod+Mod2+KP_6 workspace $ws6
+#bindsym $mod+Mod2+KP_7 workspace $ws7
+#bindsym $mod+Mod2+KP_8 workspace $ws8
+#bindsym $mod+Mod2+KP_9 workspace $ws9
+#bindsym $mod+Mod2+KP_0 workspace $ws10
+
+# MOVE WINDOW TO WORKSPACE
+bindsym $mod+Ctrl+1 move container to workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3
+#bindsym $mod+Ctrl+4 move container to workspace $ws4
+#bindsym $mod+Ctrl+5 move container to workspace $ws5
+#bindsym $mod+Ctrl+6 move container to workspace $ws6
+#bindsym $mod+Ctrl+7 move container to workspace $ws7
+#bindsym $mod+Ctrl+8 move container to workspace $ws8
+#bindsym $mod+Ctrl+9 move container to workspace $ws9
+#bindsym $mod+Ctrl+0 move container to workspace $ws10
+
+bindsym $mod+Ctrl+Mod2+KP_1 move container to workspace $ws1
+bindsym $mod+Ctrl+Mod2+KP_2 move container to workspace $ws2
+bindsym $mod+Ctrl+Mod2+KP_3 move container to workspace $ws3
+#bindsym $mod+Ctrl+Mod2+KP_4 move container to workspace $ws4
+#bindsym $mod+Ctrl+Mod2+KP_5 move container to workspace $ws5
+#bindsym $mod+Ctrl+Mod2+KP_6 move container to workspace $ws6
+#bindsym $mod+Ctrl+Mod2+KP_7 move container to workspace $ws7
+#bindsym $mod+Ctrl+Mod2+KP_8 move container to workspace $ws8
+#bindsym $mod+Ctrl+Mod2+KP_9 move container to workspace $ws9
+#bindsym $mod+Ctrl+Mod2+KP_0 move container to workspace $ws10
+
+##### COLORS #######################################
+
+# XRESOURCES
+#set_from_resource $fg foreground
+set $fg "#888888"
+set $bg "#888888"
+
+# CLASS                 BORDER  BACK    TEXT    INDICATOR
+client.focused          $bg     $bg     $fg     $bg
+client.focused_inactive $bg     $bg     $fg     $bg 
+client.unfocused        $bg     $bg     $fg     $bg
+client.urgent           $bg     $bg     $fg     $bg 
+client.placeholder      $bg     $bg     $fg     $bg 
+
+##### TOOLS ########################################
+
+# SCREENSHOT
+set $shots ~/Pictures/Screenshots
+
+bindsym $mod+Print exec maim --hidecursor $shots/$(date +%s).png
+bindsym $mod+Shift+Print exec maim -s $shots/$(date +%s).png
+bindsym $mod+Ctrl+Print exec feh $(last $shots)
+
+bindsym $mod+p exec maim --hidecursor $shots/$(date +%s).png
+bindsym $mod+Shift+p exec maim -s $shots/$(date +%s).png
+bindsym $mod+Ctrl+p exec feh $(last $shots)
+
+# CAST
+set $casts ~/Videos/casts
+
+bindsym $mod+F12       exec ~/bin/cast
+bindsym $mod+Ctrl+F12  exec ~/bin/cast -s 
+#bindsym $mod+Shift+F12 exec
+
+bindsym $mod+F11       exec pkill ffmpeg
+bindsym $mod+Ctrl+F11  exec anypaste -x -s -p streamable $(last $casts)
+bindsym $mod+Shift+F11 exec ffplay -loop 0 $(last $casts)
+
+# MEDIA CONTROLS
+bindsym $mod+slash  exec playerctl play-pause
+bindsym $mod+comma  exec playerctl previous
+bindsym $mod+period exec playerctl next
+
+bindsym $mod+Ctrl+slash  exec amixer sset Master toggle
+bindsym $mod+Ctrl+comma  exec amixer sset Master 5%-
+bindsym $mod+Ctrl+period exec amixer sset Master 5%+
+
+bindsym $mod+Shift+slash  exec amixer set Capture toggle
+bindsym $mod+Shift+comma  exec amixer set Capture 5%-
+bindsym $mod+Shift+period exec amixer set Capture 5%+
+
+# ROFI
+bindsym $mod+Space       exec rofi -show window -theme list -display-window "●"
+bindsym $mod+Ctrl+Space  exec rofi-dict
+#bindsym $mod+Shift+d exec
+
+# BACKGROUND
+#exec_always hsetroot -add "#c79081" -add "#dfa579" -gradient 0
+#exec_always hsetroot -add "#DAD299" -add "#B0DAB9" -gradient 0
+#exec_always hsetroot -solid "#c79081"
+#set_from_resource $top color6
+#set_from_resource $bot color5
+#exec_always hsetroot -add "$top" -add "$bot" -gradient 0
+exec_always hsetroot -solid "#F3F3F3"
+
+
+##### APP BINDS ###################################
+
+bindsym $mod+n       exec $browser
+bindsym $mod+Ctrl+n  exec rofi-search "$browser --new-window"
+bindsym $mod+Shift+n exec rofi-web    "$browser --new-window" 
+
+bindsym $mod+m       exec spotify
+bindsym $mod+Ctrl+m  exec steam
+bindsym $mod+Shift+m exec discord
+
+bindsym $mod+t       exec rofi-twitch -f
+bindsym $mod+Ctrl+t  exec rofi-twitch -d
+bindsym $mod+Shift+t exec rofi-twitch
+
+#bindsym $mod+y       exec
+#bindsym $mod+Ctrl+y  exec
+#bindsym $mod+Shift+y exec 
+
+bindsym $mod+u       exec dolphin-emu
+#bindsym $mod+Ctrl+u  exec 
+#bindsym $mod+Shift+u exec 
+
+bindsym $mod+o       exec rofi-now
+bindsym $mod+Ctrl+o  exec rofi-vol
+bindsym $mod+Shift+o exec rofi-bat
+
+##### LAUNCH ###################################### 
+
+# STARTUP
+exec --no-startup-id unclutter -grab
+
+# RELOAD
+exec_always --no-startup-id dunst
+#exec_always xrdb -merge ~/.Xresoureces 
+exec_always xmodmap -e "clear lock"
+exec_always xmodmap -e "keysym Caps_Lock = Ctrl"
