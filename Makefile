@@ -83,6 +83,9 @@ kitty: .PHONY
 i3: .PHONY
 	ln -s -n `pwd`/i3/config ~/.config/i3
 
+i3status-rs: .PHONY
+	ln -s -n `pwd`/i3status-rs ~/.config/i3status-rs
+
 install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv kitty
 
 update: clean install
@@ -131,6 +134,7 @@ clean: .PHONY
 			~/.gitignore(@) \
 			~/.config/kitty(@) \
 			~/.config/i3(@) \
+			~/.config/i3status-rs(@) \
 			~/.zshrc(@) \
 			~/.bashrc(@) \
 			~/.zshenv(@) \

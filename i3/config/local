@@ -1,0 +1,2 @@
+# Scale ~205 by ~1.3
+exec xrandr --dpi 160
