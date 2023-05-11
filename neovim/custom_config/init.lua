@@ -51,7 +51,6 @@ vim.opt.magic = true
 -- Always keep 15 lines below the cursor
 vim.opt.scrolloff = 15
 
-
 -- Show completion menu even when there's only one and don't insert
 -- anything until enter is pressed.
 vim.opt.completeopt = "menuone,noinsert,noselect"
@@ -59,4 +58,14 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.signcolumn = "yes"
 vim.g.gitgutter_sign_column_always = 1
 
--- require("my autocmds file") or just declare them here
+-- autocommands
+-- TODO move these to a separate file and require them
+-- TODO this doesn't work, unsure why
+vim.api.nvim_create_autocmd(
+  {
+    event = {"BufRead", "BufNewFile"},
+    group = "filetypedetect",
+    pattern = "Jenkinsfile",
+    command = "set filetype=groovy",
+  }
+)
