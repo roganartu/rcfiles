@@ -1,0 +1,51 @@
+{
+	"name": "vscode-cfengine",
+	"displayName": "vscode-cfengine",
+	"description": "CFEngine language bindings",
+	"version": "0.1.2",
+	"publisher": "azaugg",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AZaugg/vscode-cfengine"
+	},
+	"engines": {
+		"vscode": "^1.12.0"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "cfengine",
+				"aliases": [
+					"CFEngine",
+					"cfengine"
+				],
+				"extensions": [
+					".cf",
+					".cf3"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "cfengine",
+				"scopeName": "source.cfengine",
+				"path": "./syntaxes/cfe"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "c6c4baa7-5c13-49ef-9dc2-29ea732aa6c4",
+		"publisherId": "d710cf94-f953-4135-8e47-6883c1468a27",
+		"publisherDisplayName": "azaugg",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"updated": true,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1695146599213,
+		"preRelease": false
+	}
+}
