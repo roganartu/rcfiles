@@ -16,7 +16,7 @@ venvs: vim_py3_venv
 
 vim_py3_venv: .PHONY
 	mkdir -p ~/.venvs
-	bash -c "source ~/.venvs/vim/bin/activate" || python3.10 -m venv ~/.venvs/vim
+	bash -c "source ~/.venvs/vim/bin/activate" || python3 -m venv ~/.venvs/vim
 	~/.venvs/vim/bin/pip install --upgrade --upgrade-strategy eager pip black neovim jedi
 
 tmux: .PHONY submodules
@@ -58,13 +58,6 @@ starship: .PHONY
 fzf: .PHONY submodules
 	ln -s -n `pwd`/fzf/.fzf ~/.fzf
 	ln -s -n `pwd`/fzf/.fzf.zsh ~/.fzf.zsh
-
-nvim: .PHONY submodules
-	ln -s -n `pwd`/neovim/config ~/.config/nvim
-	ln -snf ../../custom_config neovim/config/lua/custom
-	# Windows doesn't support FUSE yet, so we have to extract the appimage
-	bash -c "`pwd`/neovim/nvim.appimage --version" || bash -c "cd `pwd`/neovim && \
-		./nvim.appimage --appimage-extract"
 
 pyenv: .PHONY submodules
 	ln -sf -n `pwd`/pyenv ~/.pyenv
@@ -112,9 +105,6 @@ update_starship: .PHONY
 
 update_src_cli: .PHONY
 	curl -Lq https://sourcegraph.com/.api/src-cli/src_linux_amd64 -o ./sourcegraph/src
-
-update_nvim: .PHONY
-	./neovim/update.sh neovim
 
 update_rust_analyzer: .PHONY
 	./rust-analyzer/update.sh rust-analyzer

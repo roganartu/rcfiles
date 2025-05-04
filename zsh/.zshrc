@@ -73,7 +73,7 @@ fi
 # Linux cmd to start keychain
 # --noask prevents this from prompting until the key is first used.
 # --inherit any makes it respect SSH_AUTH_SOCK running in systemd, as set above.
-eval `keychain -q --eval id_rsa --noask --inherit any`
+eval `keychain -q --eval id_ed25519 --noask`
 
 # Don't fucking beep
 unsetopt beep
@@ -138,4 +138,7 @@ eval "$(starship init zsh)"
 
 autoload -Uz compinit
 fpath+=~/.zfunc
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
