@@ -138,7 +138,3 @@ eval "$(starship init zsh)"
 
 autoload -Uz compinit
 fpath+=~/.zfunc
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
