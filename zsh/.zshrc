@@ -20,15 +20,6 @@ zstyle ':completion:*' select-prompt %SScrolling: %l%s
 zstyle ':completion:*' substitute 1
 zstyle :compinstall filename $HOME'/.zshrc'
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-plugins=(poetry)
-
-# Don't background processes because nice doesn't work in WSL
-if uname -r | grep -q 'Microsoft' ; then
-  unsetopt BG_NICE
-fi
-
 # User configuration
 
 HISTFILE=~/.histfile
@@ -40,33 +31,8 @@ bindkey -v
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-# Don't modify the prompt when we are in a venv, starship already does this for us
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-if command -v pyenv 1>/dev/null 2>&1; then
-  # Only init pyenv if we're not already in a venv
-  if [[ -z "$VIRTUAL_ENV" ]]; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-  fi
-fi
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" 2>&1 >/dev/null
-
 # Force tmux to use 256 colours
 alias tmux="TERM=xterm-256color tmux -2"
-
-# Use neovim instead of vim.
-# This has to handle Windows, where FUSE isn't available.
-if nvim --version &> /dev/null ]]; then
-  alias vim="~/bin/nvim"
-else
-  alias vim="~/bin/nvim-extracted"
-fi
 
 # Some overrides
 # start typing + [Up-Arrow] - fuzzy find history forward
@@ -95,20 +61,9 @@ if [[ "${terminfo[kdch1]}" != "" ]]; then
 fi
 
 # Fuck ansible cowsay off
-export ANSIBLE_NOCOWS=1
+export ANSIBLE_NOCOWSAY=1
 
-export GOPATH=~/Code/go
-export PATH=$PATH:$GOPATH/bin
-
-export PATH=~/bin:$PATH
-
-if uname -r | grep -q 'Microsoft' ; then
-  # vscode binary
-  export PATH=$PATH:'/mnt/c/Program Files/Microsoft VS Code/bin'
-
-  # ConEmu doesn't really play nice with shells, so force everything to think we're ZSH
-  export SHELL=/usr/bin/zsh
-fi
+export PATH="~/bin:$PATH"
 
 # Run ssh-agent as a systemd unit, per:
 # https://stackoverflow.com/a/38980986
@@ -175,16 +130,8 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 # Be the async you want to see
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-source ~/.zsh/systemd/aliases.zsh
-
-# Add zsh-completions to fpath
-fpath=(~/.zsh/zsh-completions/src $fpath)
-
 # Load completions
 autoload -U compinit && compinit
-
-# Must be last so it can wrap all custom zle widgets
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Use starship.rs
 eval "$(starship init zsh)"
@@ -192,4 +139,3 @@ eval "$(starship init zsh)"
 autoload -Uz compinit
 fpath+=~/.zfunc
 
-source /home/tl/.config/broot/launcher/bash/br

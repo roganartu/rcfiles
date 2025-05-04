@@ -80,13 +80,10 @@ bin: .PHONY
 kitty: .PHONY
 	ln -s -n `pwd`/kitty/config ~/.config/kitty
 
-i3: .PHONY
-	ln -s -n `pwd`/i3/config ~/.config/i3
+aerospace: .PHONY
+	ln -s -n `pwd`/aerospace/config ~/.config/aerospace
 
-i3status-rs: .PHONY
-	ln -s -n `pwd`/i3status-rs ~/.config/i3status-rs
-
-install: submodules vim zsh bash starship fzf tmux nvim bin git emacs pyenv kitty
+install: submodules zsh bash starship fzf tmux bin git pyenv kitty aerospace
 
 update: clean install
 
@@ -126,6 +123,7 @@ clean: .PHONY
 	zsh -c 'setopt null_glob; \
 		rm -f \
 			~/bin(@) \
+			~/.config/aerospace(@) \
 			~/.config/nvim(@) \
 			~/.config/starship.toml(@) \
 			~/.emacs.d(@) \
